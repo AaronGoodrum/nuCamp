@@ -1,5 +1,7 @@
 import { MenuComponent } from './../menu/menu.component';
 import { Dish } from './../shared/dish';
+import { DatePipe } from '@angular/common';
+
 
 import { Component, OnInit } from '@angular/core';
 
@@ -47,12 +49,14 @@ const DISH = {
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
-  styleUrls: ['./dishdetail.component.scss']
+  styleUrls: ['./dishdetail.component.scss'],
+  providers: [DatePipe]
 })
 export class DishdetailComponent implements OnInit {
 
-  selectedDish = MenuComponent;
-  constructor() { }
+  dish = DISH;
+
+  constructor(private datePipe: DatePipe) { }
 
   ngOnInit() {
   }
