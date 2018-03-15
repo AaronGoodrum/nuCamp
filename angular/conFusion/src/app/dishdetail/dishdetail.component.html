@@ -30,10 +30,10 @@
               </md-card-title>
             </md-card-header>
             <md-card-content>
-              <div *ngFor="let dishs of dish.comments">
-                <p>{{dishs.comment}}</p>
-                <p>{{dishs.rating}} Stars</p>
-                <p>{{dishs.author}}, {{dishs.date | date:'mediumDate'}}</p>
+              <div *ngFor="let comment of dish.comments">
+                <p>{{comment.comment}}</p>
+                <p>{{comment.rating}} Stars</p>
+                <p>{{comment.author}}, {{comment.date | date:'mediumDate'}}</p>
                 <br>
               </div>
             </md-card-content>

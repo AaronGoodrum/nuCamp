@@ -1,3 +1,4 @@
+import { DishService } from './services/dish.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,6 +13,7 @@ import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { DatePipe } from '@angular/common';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,7 @@ import { DatePipe } from '@angular/common';
     MaterialModule,
     FlexLayoutModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, DishService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
