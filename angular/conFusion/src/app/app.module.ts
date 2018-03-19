@@ -21,6 +21,9 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
+import { LeaderService } from './services/leader.service';
+
+
 
 
 
@@ -42,7 +45,7 @@ import { PromotionService } from './services/promotion.service';
     FlexLayoutModule,
     AppRoutingModule
   ],
-  providers: [DatePipe, DishService, PromotionService],
+  providers: [DatePipe, DishService, PromotionService, LeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
