@@ -61,10 +61,10 @@
     <!-- https://github.com/angular/flex-layout -->
     <md-list *ngFor="let leader of leaders">
       <div fxLayout="row" fxLayoutAlign="space-around start" > 
-      <img src={{leader.image}} alt={{leader.name}}>
+      <img md-list-avatar src={{leader.image}} alt={{leader.name}}>
         <div fxLayout="column" fxLayoutAlign="none" > 
           <p>{{leader.name}}</p>
-          <p>{{leader.designation}}</p>
+          <span>{{leader.designation}}</span>
           <div fxLayout="column" fxLayoutAlign="start" > 
               <p>{{leader.description}}</p>
             </div>
