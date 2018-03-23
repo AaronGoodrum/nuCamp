@@ -57,15 +57,19 @@
  <!-- Assignment Week 2 tesk 3 -->
   <div fxFlex>
     <h2>Corporate Leadership</h2>
-    <p>Display the details of the corporate leaders here</p>
     <!-- https://material.angularjs.org/latest/api/directive/mdList -->
-    <md-list role="list">
-        <!-- *ngIf="leader" -->
-        <!-- *ngFor="let leader of leaders" -->
-      <md-list-item role="listitem">leader.Name</md-list-item>
-      <md-list-item role="listitem">leader.Designation</md-list-item>
-      <md-list-item role="listitem">leader.description</md-list-item>
-
+    <!-- https://github.com/angular/flex-layout -->
+    <md-list *ngFor="let leader of leaders">
+      <div fxLayout="row" fxLayoutAlign="space-around start" > 
+      <img src={{leader.image}} alt={{leader.name}}>
+        <div fxLayout="column" fxLayoutAlign="none" > 
+          <p>{{leader.name}}</p>
+          <p>{{leader.designation}}</p>
+          <div fxLayout="column" fxLayoutAlign="start" > 
+              <p>{{leader.description}}</p>
+            </div>
+        </div>
+      </div>
     </md-list>
     
      
