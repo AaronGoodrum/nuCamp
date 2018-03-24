@@ -44,7 +44,7 @@ export const DISHES: Dish[] = [
         ]
     },
     {
-        id: 0,
+        id: 1,
         featured: false,
         name: 'Zucchipakoda',
         image: '/assets/images/zucchipakoda.png',
@@ -86,7 +86,7 @@ export const DISHES: Dish[] = [
         ]
     },
     {
-        id: 0,
+        id: 2,
         featured: false,
         name: 'Vadonut',
         image: '/assets/images/vadonut.png',
@@ -128,7 +128,7 @@ export const DISHES: Dish[] = [
         ]
     },
     {
-        id: 0,
+        id: 3,
         featured: false,
         name: 'ElaiCheese Cake',
         image: '/assets/images/elaicheesecake.png',
