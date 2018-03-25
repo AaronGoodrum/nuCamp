@@ -12,6 +12,11 @@
     <p>
       <md-input-container dividerColor="{{username.invalid && !username.pristine ? 'warn' : 'primary'}}">
         <input mdInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required>
+        <md-hint>
+          <span [hidden]="username.pristine">
+            <span [hidden]="!username.errors?.required">username is required</span>
+          </span>
+        </md-hint>
       </md-input-container>
       <md-input-container dividerColor="{{password.invalid && !password.pristine ? 'warn' : 'primary'}}">
         <input mdInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required>
@@ -21,6 +26,7 @@
           </span>
         </md-hint>
       </md-input-container>
+      <span class="flex-spacer"></span>
       <md-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</md-checkbox>
     </p>
   </md-dialog-content>
