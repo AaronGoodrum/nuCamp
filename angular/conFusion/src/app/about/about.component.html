@@ -1,5 +1,5 @@
 <div class="container" fxLayout="column" fxLayoutGap="10px">
-  
+
   <div fxFlex>
     <div>
       <h3>About Us</h3>
@@ -60,18 +60,18 @@
     <!-- https://material.angularjs.org/latest/api/directive/mdList -->
     <!-- https://github.com/angular/flex-layout -->
     <md-list *ngFor="let leader of leaders">
-      <div fxLayout="row" fxLayoutAlign="space-around start" > 
+      <div fxLayout="row" fxLayoutAlign="space-around start" >
       <img md-list-avatar src={{leader.image}} alt={{leader.name}}>
-        <div fxLayout="column" fxLayoutAlign="none" > 
-          <p>{{leader.name}}</p>
+        <div fxLayout="column" fxLayoutAlign="none" >
+          <p>{{leader.name}}, {{leader.abbr}}</p>
           <span>{{leader.designation}}</span>
-          <div fxLayout="column" fxLayoutAlign="start" > 
+          <div fxLayout="column" fxLayoutAlign="start" >
               <p>{{leader.description}}</p>
             </div>
         </div>
       </div>
     </md-list>
-    
-     
+
+
   </div>
 </div>

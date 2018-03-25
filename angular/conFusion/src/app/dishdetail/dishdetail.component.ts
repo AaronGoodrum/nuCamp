@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'; 
+import { Component, OnInit, Input } from '@angular/core';
 
 import { MenuComponent } from './../menu/menu.component';
 
@@ -22,7 +22,8 @@ export class DishdetailComponent implements OnInit {
   constructor(
     private dishservice: DishService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location
+  ) { }
 
   ngOnInit() {
     let id = +this.route.snapshot.params['id'];
