@@ -10,6 +10,7 @@ export class LeaderService {
 
   // -------------------------------
   // Simulating Time Delay within the Service
+  // 6. Exercise (Instructions): Angular and Promise Part 2
   // -------------------------------
 
   getLeaders(): Promise<Leader[]> {

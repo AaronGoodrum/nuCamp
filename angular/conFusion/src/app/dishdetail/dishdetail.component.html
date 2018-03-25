@@ -1,6 +1,7 @@
 <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.gt-md="space-around center"
   fxLayoutGap="10px" fxLayoutGap.xs="0">
   <!-- Assignment Week 1 TASK 1-2-->
+  <!-- 6. Exercise (Instructions): Angular and Promise Part 2 -->
   <div fxFlex="40">
     <div *ngIf="dish">
       <md-card>
@@ -21,6 +22,9 @@
         </md-card-actions>
       </md-card>
     </div>
+    <div [hidden]="dish">
+      <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+    </div>
   </div>
   <!-- Assignment Week 1 TASK 3 -->
   <div fxFlex="40">
@@ -40,6 +44,9 @@
           </div>
         </md-card-content>
       </md-card>
+    </div>
+    <div [hidden]="dish">
+      <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
     </div>
   </div>
 </div>

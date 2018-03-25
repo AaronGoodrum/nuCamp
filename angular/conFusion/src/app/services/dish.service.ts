@@ -9,6 +9,7 @@ export class DishService {
 
   // -------------------------------
   // Simulating Time Delay within the Service
+  // 6. Exercise (Instructions): Angular and Promise Part 2
   // -------------------------------
   getDishes(): Promise<Dish[]> {
     return new Promise(resolve=> {

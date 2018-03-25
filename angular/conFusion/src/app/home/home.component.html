@@ -1,6 +1,7 @@
 <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.gt-md="space-around center"
   fxLayoutGap="10px">
 
+  <!-- 6. Exercise (Instructions): Angular and Promise Part 2 -->
   <md-card *ngIf="dish" fxFlex>
     <md-card-header>
       <div md-card-avatar></div>
@@ -14,6 +15,9 @@
       </p>
     </md-card-content>
   </md-card>
+  <div [hidden]="dish">
+    <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
 
   <md-card *ngIf="promotion" fxFlex>
     <md-card-header>
@@ -28,6 +32,9 @@
       </p>
     </md-card-content>
   </md-card>
+  <div [hidden]="promotion">
+    <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
 
   <!-- Assignment Week 2 task 3 -->
   <md-card *ngIf="leader" fxFlex>
@@ -43,5 +50,8 @@
       </p>
     </md-card-content>
   </md-card>
+  <div [hidden]="leader">
+    <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
 
 </div>
