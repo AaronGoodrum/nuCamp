@@ -54,24 +54,27 @@
     </md-card>
   </div>
 
- <!-- Assignment Week 2 tesk 2 -->
-  <div fxFlex>
+  <!-- Assignment Week 2 tesk 2 -->
+  <!-- 6. Exercise (Instructions): Angular and Promise Part 2 -->
+  <div fxFlex *ngIf="leaders">
     <h2>Corporate Leadership</h2>
     <!-- https://material.angularjs.org/latest/api/directive/mdList -->
     <!-- https://github.com/angular/flex-layout -->
     <md-list *ngFor="let leader of leaders">
-      <div fxLayout="row" fxLayoutAlign="space-around start" >
-      <img md-list-avatar src={{leader.image}} alt={{leader.name}}>
-        <div fxLayout="column" fxLayoutAlign="none" >
+      <div fxLayout="row" fxLayoutAlign="space-around start">
+        <img md-list-avatar src={{leader.image}} alt={{leader.name}}>
+        <div fxLayout="column" fxLayoutAlign="none">
           <p>{{leader.name}}, {{leader.abbr}}</p>
           <span>{{leader.designation}}</span>
-          <div fxLayout="column" fxLayoutAlign="start" >
-              <p>{{leader.description}}</p>
-            </div>
+          <div fxLayout="column" fxLayoutAlign="start">
+            <p>{{leader.description}}</p>
+          </div>
         </div>
       </div>
     </md-list>
-
-
+  </div>
+  <div [hidden]="leaders">
+    <md-spinner></md-spinner>
+    <h4>Loading . . . Please Wait</h4>
   </div>
 </div>

@@ -8,6 +8,7 @@ export class PromotionService {
   constructor() { }
   // -------------------------------
   // Simulating Time Delay within the Service
+  // 6. Exercise (Instructions): Angular and Promise Part 2
   // -------------------------------
   
   getPromotions(): Promise<Promotion[]> {
