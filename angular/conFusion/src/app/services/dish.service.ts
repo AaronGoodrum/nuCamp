@@ -43,18 +43,8 @@ export class DishService {
     //   // Simulate server latency with 2 second delay
     //   setTimeout(() => resolve(DISHES.filter((dish) => dish.featured)[0]), 2000);
     }
+
+  getDishIds(): Observable<number[]> {
+    return Observable.of(DISHES.map(dish => dish.id )).delay(2000);
   }
-
-
-  // No Delay within the Service
-  // getDishes(): Promise<Dish[]> {
-  //   return Promise.resolve(DISHES);
-  // }
-
-  // getDish(id: number): Promise<Dish> {
-  //   return Promise.resolve(DISHES.filter((dish) => (dish.id === id))[0]);
-  // }
-
-  // getFeaturedDish(): Promise<Dish> {
-  //   return Promise.resolve(DISHES.filter((dish) => dish.featured)[0]);
-  // }
+  }

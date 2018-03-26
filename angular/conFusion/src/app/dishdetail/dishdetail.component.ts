@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import 'rxjs/add/operator/switchMap';
 
 import { MenuComponent } from './../menu/menu.component';
 
@@ -9,6 +10,9 @@ import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { DatePipe } from '@angular/common';
 
+    // 4. Exercise (Instructions): Angular and Promise Part 1
+    // 4. Exercise (Instructions): Angular and RxJS Part 1
+    // 4. Exercise (Instructions): Angular and RxJS Part 2
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
@@ -18,6 +22,9 @@ import { DatePipe } from '@angular/common';
 export class DishdetailComponent implements OnInit {
 
   dish: Dish;
+  dishIds: number[];
+  prev: number;
+  next: number;
 
   constructor(
     private dishservice: DishService,
@@ -26,12 +33,18 @@ export class DishdetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let id = +this.route.snapshot.params['id'];
-    // 4. Exercise (Instructions): Angular and Promise Part 1
-    // 4. Exercise (Instructions): Angular and RxJS Part 1
-    this.dishservice.getDish(id)
-    .subscribe(dish => this.dish = dish);
 
+    this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
+    this.route.params
+      .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
+      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+
+  }
+
+  setPrevNext(dishId: number) {
+    let index = this.dishIds.indexOf(dishId);
+    this.prev = this.dishIds[(this.dishIds.length + index - 1)%this.dishIds.length];
+    this.next = this.dishIds[(this.dishIds.length + index + 1)%this.dishIds.length];
   }
 
   goBack(): void {
