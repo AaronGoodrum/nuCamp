@@ -3,7 +3,6 @@ import { Promotion } from '../shared/promotion';
 import { PROMOTIONS } from '../shared/promotions';
 import { Observable } from 'rxjs/Observable';
 
-import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/observable/of';
 
@@ -17,8 +16,9 @@ export class PromotionService {
   // 4. Exercise (Instructions): Angular and RxJS Part 1
   // -------------------------------
   
-  getPromotions(): Promise<Promotion[]> {
-    return Observable.of(PROMOTIONS).delay(2000).toPromise();
+  getPromotions(): Observable<Promotion[]> {
+    
+    return Observable.of(PROMOTIONS).delay(2000);
 
     // return new Promise(resolve => {
     //   setTimeout(() => resolve(PROMOTIONS), 2000)
@@ -26,9 +26,9 @@ export class PromotionService {
     // });
   }
 
-  getPromotion(id: number): Promise<Promotion> {
+  getPromotion(id: number): Observable<Promotion> {
  
-    return Observable.of(PROMOTIONS.filter((Promotion) => (Promotion.id === id))[0]).delay(2000).toPromise();
+    return Observable.of(PROMOTIONS.filter((Promotion) => (Promotion.id === id))[0]).delay(2000);
  
     // return new Promise(resolve => {
     //   setTimeout(() => resolve(PROMOTIONS.filter((promo) => (promo.id === id))[0]), 2000)
@@ -36,9 +36,9 @@ export class PromotionService {
     // });
   }
 
-  getFeaturedPromotion(): Promise<Promotion> {
+  getFeaturedPromotion(): Observable<Promotion> {
  
-    return Observable.of(PROMOTIONS.filter((Promotion) => Promotion.featured)[0]).delay(2000).toPromise();
+    return Observable.of(PROMOTIONS.filter((Promotion) => Promotion.featured)[0]).delay(2000);
  
     // return new Promise(resolve => {
     //   setTimeout(() => resolve(PROMOTIONS.filter((promotion) => promotion.featured)[0]), 2000)

@@ -4,7 +4,6 @@ import { LEADERS } from './../shared/leaders';
 
 import { Observable } from 'rxjs/Observable';
 
-import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/observable/of';
 
@@ -20,8 +19,8 @@ export class LeaderService {
   // 4. Exercise (Instructions): Angular and RxJS Part 1
   // -------------------------------
 
-  getLeaders(): Promise<Leader[]> {
-    return Observable.of(LEADERS).delay(2000).toPromise();
+  getLeaders(): Observable<Leader[]> {
+    return Observable.of(LEADERS).delay(2000);
     // return new Promise(resolve=> {
     //   // Simulate server latency with 2 second delay
     //     setTimeout(() => resolve(LEADERS), 2000);
@@ -29,9 +28,9 @@ export class LeaderService {
     // return Promise.resolve(LEADERS);
   }
 
-  getLeader(id: number): Promise<Leader> {
+  getLeader(id: number): Observable<Leader> {
     
-    return Observable.of(LEADERS.filter((leader) => (leader.id === id))[0]).delay(2000).toPromise();
+    return Observable.of(LEADERS.filter((leader) => (leader.id === id))[0]).delay(2000);
 
     // return new Promise(resolve => {
     //   setTimeout(() => resolve(LEADERS.filter((leader) => (leader.id === id))[0]), 2000);
@@ -39,9 +38,9 @@ export class LeaderService {
     // return Promise.resolve(LEADERS.filter((leader) => (leader.id === id))[0]);
   }
 
-  getFeaturedLeader(): Promise<Leader> {
+  getFeaturedLeader(): Observable<Leader> {
  
-    return Observable.of(LEADERS.filter((leader) => leader.featured)[0]).delay(2000).toPromise();
+    return Observable.of(LEADERS.filter((leader) => leader.featured)[0]).delay(2000);
  
     // return new Promise(resolve => {
     //   setTimeout(() => resolve(LEADERS.filter((leader) => leader.featured)[0]), 2000);
