@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
-
+import { switchMap } from 'rxjs/operators';
+ 
 import { MenuComponent } from './../menu/menu.component';
 
 import { Dish } from './../shared/dish';
