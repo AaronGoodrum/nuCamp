@@ -8,12 +8,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuComponent } from './../menu/menu.component';
 
 import { Dish } from './../shared/dish';
+import { DISHES } from './../shared/dishes';
 import { DishService } from '../services/dish.service';
 import { Comment } from '../shared/comment';
 
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { DatePipe } from '@angular/common';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
     // 4. Exercise (Instructions): Angular and Promise Part 1
     // 4. Exercise (Instructions): Angular and RxJS Part 1
@@ -33,6 +35,7 @@ export class DishdetailComponent implements OnInit {
   next: number;
   CommentRating: number;
   date = new Date();
+  comment = 'message';
 
   commentFeedForm: FormGroup;
   commentForm = Comment;
@@ -86,6 +89,7 @@ export class DishdetailComponent implements OnInit {
       // Angular Reactive Forms Part 3
       author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       message: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(255)]],
+      comment: ['message'],
       rating:[5],
       date: new Date()
     });
@@ -100,6 +104,7 @@ export class DishdetailComponent implements OnInit {
     this.commentForm = this.commentFeedForm.value;
     console.log(this.commentForm);
     console.log(value);
+    this.dish.comments.push(value)
     this.commentFeedForm.reset({
       author: '',
       message: '',
