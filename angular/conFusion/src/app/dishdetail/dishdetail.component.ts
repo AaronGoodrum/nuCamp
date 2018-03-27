@@ -32,13 +32,15 @@ export class DishdetailComponent implements OnInit {
   prev: number;
   next: number;
   CommentRating: number;
+  date = new Date();
 
   commentFeedForm: FormGroup;
   commentForm = Comment;
   formErrors = {
     'author': '',
     'message':'',
-    'rating': 5
+    'rating': 5,
+    'date': ''
   };
 
   validationMessages = {
@@ -84,20 +86,25 @@ export class DishdetailComponent implements OnInit {
       // Angular Reactive Forms Part 3
       author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       message: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(255)]],
-      rating:[5]
+      rating:[5],
+      date: new Date()
     });
+
     this.commentFeedForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
     this.onValueChanged(); // (re)set validation messages now
   }
 
   onSubmit() {
+    const value = this.commentFeedForm.value;
     this.commentForm = this.commentFeedForm.value;
     console.log(this.commentForm);
+    console.log(value);
     this.commentFeedForm.reset({
       author: '',
       message: '',
-      rating: 5
+      rating: 5,
+      date:''
     });
   }
 
