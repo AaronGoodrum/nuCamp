@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MdSliderModule } from '@angular/material';
 import 'rxjs/add/operator/switchMap';
 import { switchMap } from 'rxjs/operators';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/forms';
 
  
 import { MenuComponent } from './../menu/menu.component';
@@ -34,15 +34,15 @@ export class DishdetailComponent implements OnInit {
   prev: number;
   next: number;
   CommentRating: number;
-  date = new Date();
-  comment = 'message';
+  date: string;
+  comment: string;
 
   commentFeedForm: FormGroup;
   commentForm = Comment;
   formErrors = {
     'author': '',
-    'message':'',
-    'rating': 5,
+    'comment':'',
+    'rating': '',
     'date': ''
   };
 
@@ -52,7 +52,7 @@ export class DishdetailComponent implements OnInit {
       'minlength': 'Auther Name must be at least 2 characters long.',
       'maxlength': 'Auther Name cannot be more than 25 characters long.'
     },
-    'message':{
+    'comment':{
       'required': 'comment is required.',
       'minlength': 'comment must be at least 2 characters long.',
       'maxlength': 'comment cannot be more than 255 characters long.'
@@ -88,10 +88,9 @@ export class DishdetailComponent implements OnInit {
     this.commentFeedForm = this.fb.group({
       // Angular Reactive Forms Part 3
       author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      message: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(255)]],
-      comment: ['message'],
+      comment: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(255)]],
       rating:[5],
-      date: new Date()
+      date: []
     });
 
     this.commentFeedForm.valueChanges
@@ -100,14 +99,20 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
-    const value = this.commentFeedForm.value;
-    this.commentForm = this.commentFeedForm.value;
-    console.log(this.commentForm);
-    console.log(value);
-    this.dish.comments.push(value)
+    const commentFeedForm = this.commentFeedForm = this.fb.group({
+      author: this.commentFeedForm.value.author,
+      comment: this.commentFeedForm.value.comment,
+      rating: this.commentFeedForm.value.rating,
+      date: new Date()
+    });
+    // this.commentForm = this.commentFeedForm.value;
+    // console.log(this.commentForm); 
+    console.log(commentFeedForm.value);
+    this.dish.comments.push(commentFeedForm.value)
+
     this.commentFeedForm.reset({
       author: '',
-      message: '',
+      comment: '',
       rating: 5,
       date:''
     });
