@@ -99,6 +99,8 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
+    // Week 3 Assignment Task 3
+    // So painful, to do this right.
     const commentFeedForm = this.commentFeedForm = this.fb.group({
       author: this.commentFeedForm.value.author,
       comment: this.commentFeedForm.value.comment,
