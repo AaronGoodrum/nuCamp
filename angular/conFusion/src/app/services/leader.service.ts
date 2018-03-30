@@ -10,9 +10,7 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class LeaderService {
-
   constructor() { }
-
   // -------------------------------
   // Simulating Time Delay within the Service
   // 6. Exercise (Instructions): Angular and Promise Part 2
@@ -29,7 +27,6 @@ export class LeaderService {
   }
 
   getLeader(id: number): Observable<Leader> {
-    
     return Observable.of(LEADERS.filter((leader) => (leader.id === id))[0]).delay(2000);
 
     // return new Promise(resolve => {
@@ -39,9 +36,7 @@ export class LeaderService {
   }
 
   getFeaturedLeader(): Observable<Leader> {
- 
     return Observable.of(LEADERS.filter((leader) => leader.featured)[0]).delay(2000);
- 
     // return new Promise(resolve => {
     //   setTimeout(() => resolve(LEADERS.filter((leader) => leader.featured)[0]), 2000);
     // });
