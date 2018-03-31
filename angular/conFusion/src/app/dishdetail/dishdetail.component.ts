@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import { switchMap } from 'rxjs/operators';
- 
+
 import { MenuComponent } from './../menu/menu.component';
 
 import { Dish } from './../shared/dish';
@@ -43,9 +43,9 @@ export class DishdetailComponent implements OnInit {
   }
 
   setPrevNext(dishId: number) {
-    let index = this.dishIds.indexOf(dishId);
-    this.prev = this.dishIds[(this.dishIds.length + index - 1)%this.dishIds.length];
-    this.next = this.dishIds[(this.dishIds.length + index + 1)%this.dishIds.length];
+    const index = this.dishIds.indexOf(dishId);
+    this.prev = this.dishIds[(this.dishIds.length + index - 1) % this.dishIds.length];
+    this.next = this.dishIds[(this.dishIds.length + index + 1) % this.dishIds.length];
   }
 
   goBack(): void {
