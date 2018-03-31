@@ -4,7 +4,6 @@ import 'rxjs/add/operator/switchMap';
 import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/forms';
 
- 
 import { MenuComponent } from './../menu/menu.component';
 
 import { Dish } from './../shared/dish';
@@ -41,7 +40,7 @@ export class DishdetailComponent implements OnInit {
   commentForm = Comment;
   formErrors = {
     'author': '',
-    'comment':'',
+    'comment': '',
     'rating': '',
     'date': ''
   };
@@ -52,7 +51,7 @@ export class DishdetailComponent implements OnInit {
       'minlength': 'Auther Name must be at least 2 characters long.',
       'maxlength': 'Auther Name cannot be more than 25 characters long.'
     },
-    'comment':{
+    'comment': {
       'required': 'comment is required.',
       'minlength': 'comment must be at least 2 characters long.',
       'maxlength': 'comment cannot be more than 255 characters long.'
@@ -75,9 +74,9 @@ export class DishdetailComponent implements OnInit {
   }
 
   setPrevNext(dishId: number) {
-    let index = this.dishIds.indexOf(dishId);
-    this.prev = this.dishIds[(this.dishIds.length + index - 1)%this.dishIds.length];
-    this.next = this.dishIds[(this.dishIds.length + index + 1)%this.dishIds.length];
+    const index = this.dishIds.indexOf(dishId);
+    this.prev = this.dishIds[(this.dishIds.length + index - 1) % this.dishIds.length];
+    this.next = this.dishIds[(this.dishIds.length + index + 1) % this.dishIds.length];
   }
 
   goBack(): void {
@@ -89,7 +88,7 @@ export class DishdetailComponent implements OnInit {
       // Angular Reactive Forms Part 3
       author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       comment: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(255)]],
-      rating:[5],
+      rating: [5],
       date: []
     });
 
@@ -108,15 +107,15 @@ export class DishdetailComponent implements OnInit {
       date: new Date()
     });
     // this.commentForm = this.commentFeedForm.value;
-    // console.log(this.commentForm); 
+    // console.log(this.commentForm);
     console.log(commentFeedForm.value);
-    this.dish.comments.push(commentFeedForm.value)
+    this.dish.comments.push(commentFeedForm.value );
 
     this.commentFeedForm.reset({
       author: '',
       comment: '',
       rating: 5,
-      date:''
+      date: ''
     });
   }
 
