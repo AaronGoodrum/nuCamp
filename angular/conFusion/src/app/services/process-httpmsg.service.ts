@@ -8,7 +8,7 @@ export class ProcessHttpMsgService {
   constructor() { }
 
   public extractData(res: Response) {
-    const body = res.json();
+    let body = res.json();
     console.log(body);
 
     return body || {};
