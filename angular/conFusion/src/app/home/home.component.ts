@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   dish: Dish;
   promotion: Promotion;
   leader: Leader;
+  errMess: string;
 
   constructor(
     private dishservice: DishService,
@@ -27,13 +28,16 @@ export class HomeComponent implements OnInit {
     // 4. Exercise (Instructions): Angular and Promise Part 1
     // 4. Exercise (Instructions): Angular and RxJS Part 1
     this.dishservice.getFeaturedDish()
-      .subscribe(dish => this.dish = dish);
+      .subscribe(dish => this.dish = dish,
+        errmess => this.errMess = <any>errmess);
 
     this.promotionservice.getFeaturedPromotion()
-      .subscribe(promotion => this.promotion = promotion);
+      .subscribe(promotion => this.promotion = promotion,
+        errmess => this.errMess = <any>errmess);
 
     this.leaderservice.getFeaturedLeader()
-      .subscribe(leader => this.leader = leader);
+      .subscribe(leader => this.leader = leader,
+        errmess => this.errMess = <any>errmess);
   }
 
 }

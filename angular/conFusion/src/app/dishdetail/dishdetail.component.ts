@@ -35,6 +35,7 @@ export class DishdetailComponent implements OnInit {
   CommentRating: number;
   date: string;
   comment: string;
+  dishErrMess: string;
 
   commentFeedForm: FormGroup;
   commentForm = Comment;
@@ -70,7 +71,7 @@ export class DishdetailComponent implements OnInit {
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params
       .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); }, dishErrMess => this.dishErrMess = <any>dishErrMess);
   }
 
   setPrevNext(dishId: number) {
