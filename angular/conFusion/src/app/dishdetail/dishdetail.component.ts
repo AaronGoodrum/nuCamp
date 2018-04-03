@@ -131,16 +131,18 @@ export class DishdetailComponent implements OnInit {
     if (!this.commentFeedForm) { return; }
     const form = this.commentFeedForm;
     for (const field in this.formErrors) {
-      // clear previous error message (if any)
+     // clear previous error message (if any)
       this.formErrors[field] = '';
       const control = form.get(field);
-      if (control && control.dirty && !control.valid) {
-        const messages = this.validationMessages[field];
-        for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
+
+        if (control && control.dirty && !control.valid) {
+          const messages = this.validationMessages[field];
+
+          for (const key in control.errors) {
+            this.formErrors[field] += messages[key] + ' ';
+            }
         }
       }
-    }
   }
 
 }
