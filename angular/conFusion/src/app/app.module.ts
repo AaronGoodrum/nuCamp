@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -21,13 +21,14 @@ import { ContactComponent } from './contact/contact.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
+import { LoginComponent } from './login/login.component';
+
+import { baseURL } from './shared/baseurl';
+
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
-import { LoginComponent } from './login/login.component';
-
-
-
+import { ProcessHttpMsgService } from './services/process-httpmsg.service';
 
 
 @NgModule({
@@ -49,12 +50,13 @@ import { LoginComponent } from './login/login.component';
     FlexLayoutModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   entryComponents: [
     LoginComponent
   ],
-  providers: [DatePipe, DishService, PromotionService, LeaderService],
+  providers: [DatePipe, DishService, PromotionService, LeaderService, { provide: 'BaseURL', useValue: baseURL }, ProcessHttpMsgService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

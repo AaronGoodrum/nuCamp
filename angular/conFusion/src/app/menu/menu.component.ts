@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import { DishService } from '../services/dish.service';
 import { Dish } from '../shared/dish';
-import { DISHES } from './../shared/dishes';
+// import { DISHES } from './../shared/dishes';
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +15,9 @@ export class MenuComponent implements OnInit {
 
   selectedDish: Dish;
 
-  constructor(private dishService: DishService) { }
+  constructor(
+    private dishService: DishService,
+    @Inject('BaseURL') public BaseURL) { }
 
   ngOnInit() {
     // 4. Exercise (Instructions): Angular and Promise Part 1
