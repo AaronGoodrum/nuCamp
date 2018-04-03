@@ -22,7 +22,9 @@ import { ContactComponent } from './contact/contact.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { LoginComponent } from './login/login.component';
+import { RestangularModule, Restangular } from 'ngx-restangular';
 
+import { RestangularConfigFactory } from './shared/restConfig';
 import { baseURL } from './shared/baseurl';
 
 import { DishService } from './services/dish.service';
@@ -51,7 +53,8 @@ import { ProcessHttpMsgService } from './services/process-httpmsg.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   entryComponents: [
     LoginComponent
