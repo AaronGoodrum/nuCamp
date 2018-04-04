@@ -8,6 +8,7 @@ import { Feedback, ContactType } from '../shared/feedback';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
+  // tslint:disable-next-line:use-host-property-decorator
   host: {
     '[@flyInOut]': 'true',
     'style': 'display: block;'
@@ -89,16 +90,18 @@ export class ContactComponent implements OnInit {
       message: ''
     });
   }
-  
+
   onValueChanged(data?: any) {
     if (!this.feedbackForm) { return; }
     const form = this.feedbackForm;
+    // tslint:disable-next-line:forin
     for (const field in this.formErrors) {
       // clear previous error message (if any)
       this.formErrors[field] = '';
       const control = form.get(field);
       if (control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
+        // tslint:disable-next-line:forin
         for (const key in control.errors) {
           this.formErrors[field] += messages[key] + ' ';
         }

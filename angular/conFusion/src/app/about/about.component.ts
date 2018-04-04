@@ -8,6 +8,7 @@ import { flyInOut, expand } from '../animations/app.animation';
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
+  // tslint:disable-next-line:use-host-property-decorator
   host: {
     '[@flyInOut]': 'true',
     'style': 'display: block;'

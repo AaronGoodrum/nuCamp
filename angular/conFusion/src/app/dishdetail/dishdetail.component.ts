@@ -29,6 +29,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
   styleUrls: ['./dishdetail.component.scss'],
   providers: [DatePipe],
   animations: [visibility(), flyInOut(), expand()],
+  // tslint:disable-next-line:use-host-property-decorator
   host: {
     '[@flyInOut]': 'true',
     'style': 'display: block;'
@@ -141,6 +142,7 @@ export class DishdetailComponent implements OnInit {
   onValueChanged(data?: any) {
     if (!this.commentFeedForm) { return; }
     const form = this.commentFeedForm;
+    // tslint:disable-next-line:forin
     for (const field in this.formErrors) {
      // clear previous error message (if any)
       this.formErrors[field] = '';
@@ -149,6 +151,7 @@ export class DishdetailComponent implements OnInit {
         if (control && control.dirty && !control.valid) {
           const messages = this.validationMessages[field];
 
+          // tslint:disable-next-line:forin
           for (const key in control.errors) {
             this.formErrors[field] += messages[key] + ' ';
             }
