@@ -1,12 +1,13 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MdSliderModule } from '@angular/material';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/forms';
 
 import 'rxjs/add/operator/switchMap';
 import { switchMap } from 'rxjs/operators';
 
 import { MenuComponent } from './../menu/menu.component';
+
+import { visibility, flyInOut, expand } from '../animations/app.animation';
 
 import { Dish } from './../shared/dish';
 // import { DISHES } from './../shared/dishes';
@@ -27,19 +28,11 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
   providers: [DatePipe],
-  animations: [
-    trigger('visibility', [
-      state('shown', style({
-        transform: 'scale(1.0)',
-        opacity: 1
-      })),
-      state('hidden', style({
-        transform: 'scale(0.5)',
-        opacity: 0
-      })),
-      transition('* => *', animate('0.5s ease-in-out'))
-    ])
-  ]
+  animations: [visibility(), flyInOut(), expand()],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  }
 })
 export class DishdetailComponent implements OnInit {
 
