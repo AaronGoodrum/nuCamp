@@ -3,7 +3,7 @@
   <!-- Assignment Week 1 TASK 1-2-->
   <!-- 6. Exercise (Instructions): Angular and Promise Part 2 -->
   <div fxFlex="40">
-    <div *ngIf="dish">
+    <div *ngIf="dish" [@visibility]="visibility">
       <md-card>
         <md-card-header>
           <md-card-title>
@@ -37,7 +37,7 @@
   </div>
   <!-- Assignment Week 1 TASK 3 -->
   <div fxFlex="60">
-    <div *ngIf="dish">
+    <div *ngIf="dish" [@visibility]="visibility">
       <md-card>
         <md-card-header>
           <md-card-title>

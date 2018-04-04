@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MdSliderModule } from '@angular/material';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/forms';
+
 import 'rxjs/add/operator/switchMap';
 import { switchMap } from 'rxjs/operators';
-import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/forms';
 
 import { MenuComponent } from './../menu/menu.component';
 
@@ -24,13 +26,28 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
-  providers: [DatePipe]
+  providers: [DatePipe],
+  animations: [
+    trigger('visibility', [
+      state('shown', style({
+        transform: 'scale(1.0)',
+        opacity: 1
+      })),
+      state('hidden', style({
+        transform: 'scale(0.5)',
+        opacity: 0
+      })),
+      transition('* => *', animate('0.5s ease-in-out'))
+    ])
+  ]
 })
 export class DishdetailComponent implements OnInit {
 
   dish: Dish;
   dishIds: number[];
   dishcopy = null;
+
+  visibility = 'shown';
 
   prev: number;
   next: number;
@@ -76,7 +93,8 @@ export class DishdetailComponent implements OnInit {
       .subscribe(dish => {
         this.dish = dish;
         this.dishcopy = dish;
-        this.setPrevNext(dish.id); },
+        this.setPrevNext(dish.id);
+        this.visibility = 'shown'; },
       dishErrMess => this.dish = null, this.dishErrMess = <any>this.dishErrMess);
   }
 
