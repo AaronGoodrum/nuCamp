@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import { LeaderService } from '../services/leader.service';
 import { Leader } from '../shared/leader';
@@ -22,7 +22,8 @@ export class AboutComponent implements OnInit {
   leaders: Leader[];
 
   constructor(
-    private leaderservice: LeaderService ) { }
+    private leaderservice: LeaderService,
+    @Inject('BaseURL') public BaseURL) { }
 
   ngOnInit() {
     // 4. Exercise (Instructions): Angular and Promise Part 1
