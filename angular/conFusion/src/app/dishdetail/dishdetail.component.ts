@@ -19,6 +19,7 @@ import { Location } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
+
     // 4. Exercise (Instructions): Angular and Promise Part 1
     // 4. Exercise (Instructions): Angular and RxJS Part 1
     // 4. Exercise (Instructions): Angular and RxJS Part 2
@@ -119,7 +120,7 @@ export class DishdetailComponent implements OnInit {
   onSubmit() {
     // Week 3 Assignment Task 3
     // So painful, to do this right.
-    const commentFeedForm = this.commentFeedForm = this.fb.group({
+    const commentFeedForm = this.fb.group({
       author: this.commentFeedForm.value.author,
       comment: this.commentFeedForm.value.comment,
       rating: this.commentFeedForm.value.rating,
@@ -128,10 +129,12 @@ export class DishdetailComponent implements OnInit {
     // this.commentForm = this.commentFeedForm.value;
     // console.log(this.commentForm);
     console.log(commentFeedForm.value);
+
     this.dish.comments.push(commentFeedForm.value );
     this.dishcopy.save()
       .subscribe(dish => { this.dish = dish; console.log(this.dish); });
-    this.commentFeedForm.reset({
+
+      this.commentFeedForm.reset({
       author: '',
       comment: '',
       rating: 5,
