@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { baseURL } from './../shared/baseurl';
 
 import { Component, OnInit, Inject } from '@angular/core';
@@ -26,6 +27,10 @@ export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  isOn = true;
+  isOnPost = true;
+  PostCopy = null;
+
   formErrors = {
     'firstname': '',
     'lastname': '',
@@ -60,6 +65,8 @@ export class ContactComponent implements OnInit {
     @Inject('BaseURL') public BaseURL) { this.createForm();  }
 
   ngOnInit() {
+    this.isOn = true,
+    this.isOnPost = true;
     this.http.get(this.BaseURL + 'feedback').subscribe(data => console.log(data));
   }
 
@@ -82,18 +89,9 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit(feedbackForm) {
-    console.log(feedbackForm.value);
-
-    // const feedbackFormPost = this.fb.group({
-    //   firstname: this.feedbackForm.value.firstname,
-    //   lastname: this.feedbackForm.value.lastname,
-    //   telnum: this.feedbackForm.value.telnum,
-    //   email: this.feedbackForm.value.email,
-    //   message: this.feedbackForm.value.message,
-    //   date: new Date()
-    // });
-    // console.log(feedbackFormPost);
-
+    this.isOn = false;
+    setTimeout(() => { this.isOnPost = false; }, 2000);
+    this.PostCopy = this.feedbackForm.value;
     this.http.post(this.BaseURL + 'feedback', {
       firstname: this.feedbackForm.value.firstname,
       lastname: this.feedbackForm.value.lastname,
@@ -105,7 +103,11 @@ export class ContactComponent implements OnInit {
       date: new Date()
     })
     .subscribe(
-      (data: any) => { console.log(data); } );
+      (data: any) => {
+        this.PostCopy = data,
+        console.log(data);
+      } );
+    setTimeout(() => {this.isOn = true, this.isOnPost = true; }, 5000 );
 
     this.feedbackForm.reset({
       firstname: '',
