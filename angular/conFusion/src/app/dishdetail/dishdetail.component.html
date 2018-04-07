@@ -63,11 +63,11 @@
           <form novalidate [formGroup]="commentFeedForm" (ngSubmit)="onSubmit()" class="full-width">
             <p>
               <md-input-container class="full-width" dividerColor="{{(formErrors.author) ? 'warn' : 'primary'}}">
-                <input 
-                  mdInput 
-                  formControlName="author" 
-                  placeholder="author Name" 
-                  type="text" 
+                <input
+                  mdInput
+                  formControlName="author"
+                  placeholder="author Name"
+                  type="text"
                   required
                 >
                 <md-hint>
@@ -78,22 +78,22 @@
             </p>
             <div layout="row">
               <label>Your Rating</label>
-              <md-slider 
-                flex 
-                formControlName="rating" 
-                md-discrete 
-                step="1" min="1" max="5" 
-                aria-label="Comment-Rating" 
+              <md-slider
+                flex
+                formControlName="rating"
+                md-discrete
+                step="1" min="1" max="5"
+                aria-label="Comment-Rating"
                 placeholder="Your Rating"
               >
               </md-slider>
             </div>
             <p>
               <md-input-container class="full-width">
-                <textarea 
-                  mdInput 
-                  formControlName="comment" 
-                  placeholder="Your Feedback" 
+                <textarea
+                  mdInput
+                  formControlName="comment"
+                  placeholder="Your Feedback"
                   rows=12
                 >
                 </textarea>
@@ -103,10 +103,10 @@
                 </md-hint>
               </md-input-container>
             </p>
-            <button 
-              type="submit" 
-              md-button 
-              class="background-primary text-floral-white" 
+            <button
+              type="submit"
+              md-button
+              class="background-primary text-floral-white"
               [disabled]="commentFeedForm.invalid"
             > Submit
             </button>

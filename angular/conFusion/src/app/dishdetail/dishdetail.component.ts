@@ -32,6 +32,7 @@ export class DishdetailComponent implements OnInit {
   dishIds: number[];
   prev: number;
   next: number;
+
   CommentRating: number;
   date: string;
   comment: string;
@@ -47,14 +48,14 @@ export class DishdetailComponent implements OnInit {
 
   validationMessages = {
     'author': {
-      'required': 'Auther Name is required.',
-      'minlength': 'Auther Name must be at least 2 characters long.',
-      'maxlength': 'Auther Name cannot be more than 25 characters long.'
+      'required': 'Authr Name is required.',
+      'minlength': 'Author Name must be at least 2 characters long.',
+      'maxlength': 'Author Name cannot be more than 25 characters long.'
     },
     'comment': {
-      'required': 'comment is required.',
-      'minlength': 'comment must be at least 2 characters long.',
-      'maxlength': 'comment cannot be more than 255 characters long.'
+      'required': 'Comment is required.',
+      'minlength': 'Comment must be at least 2 characters long.',
+      'maxlength': 'Comment cannot be more than 255 characters long.'
     }
   };
 
