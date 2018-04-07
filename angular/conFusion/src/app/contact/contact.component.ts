@@ -62,11 +62,11 @@ export class ContactComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
-    @Inject('BaseURL') public BaseURL) { this.createForm();  }
+    @Inject('BaseURL') public BaseURL) { this.createForm(); }
 
   ngOnInit() {
     this.isOn = true,
-    this.isOnPost = true;
+      this.isOnPost = true;
     this.http.get(this.BaseURL + 'feedback').subscribe(data => console.log(data));
   }
 
@@ -102,12 +102,12 @@ export class ContactComponent implements OnInit {
       message: this.feedbackForm.value.message,
       date: new Date()
     })
-    .subscribe(
-      (data: any) => {
-        this.PostCopy = data,
-        console.log(data);
-      } );
-    setTimeout(() => {this.isOn = true, this.isOnPost = true; }, 5000 );
+      .subscribe(
+        (data: any) => {
+          this.PostCopy = data,
+            console.log(data);
+        });
+    setTimeout(() => { this.isOn = true, this.isOnPost = true; }, 5000);
 
     this.feedbackForm.reset({
       firstname: '',

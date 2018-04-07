@@ -30,7 +30,7 @@ export class AboutComponent implements OnInit {
     // 4. Exercise (Instructions): Angular and Promise Part 1
     // 4. Exercise (Instructions): Angular and RxJS Part 1
     this.leaderservice.getLeaders()
-    .subscribe(leaders => this.leaders = leaders);
+      .subscribe(leaders => this.leaders = leaders);
   }
 
 }

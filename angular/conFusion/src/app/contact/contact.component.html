@@ -46,95 +46,95 @@
     <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
 
     <!-- 8. Exercise (Instructions): Angular Reactive Forms Part 3 -->
-            <form *ngIf="isOn" novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
-          <p>
-            <md-input-container class="half-width" dividerColor="{{(formErrors.firstname) ? 'warn' : 'primary'}}">
-              <input mdInput formControlName="firstname" placeholder="First Name" type="text" required>
-              <md-hint>
-                <span [hidden]="!(formErrors.firstname)">
-                  {{formErrors.firstname}}</span>
-              </md-hint>
-            </md-input-container>
-            <md-input-container class="half-width" dividerColor="{{(formErrors.lastname) ? 'warn' : 'primary'}}">
-              <input mdInput formControlName="lastname" placeholder="Last Name" type="text" required>
-              <md-hint>
-                <span [hidden]="!(formErrors.lastname)">
-                  {{formErrors.lastname}}</span>
-              </md-hint>
-            </md-input-container>
+    <form *ngIf="isOn" novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+      <p>
+        <md-input-container class="half-width" dividerColor="{{(formErrors.firstname) ? 'warn' : 'primary'}}">
+          <input mdInput formControlName="firstname" placeholder="First Name" type="text" required>
+          <md-hint>
+            <span [hidden]="!(formErrors.firstname)">
+              {{formErrors.firstname}}</span>
+          </md-hint>
+        </md-input-container>
+        <md-input-container class="half-width" dividerColor="{{(formErrors.lastname) ? 'warn' : 'primary'}}">
+          <input mdInput formControlName="lastname" placeholder="Last Name" type="text" required>
+          <md-hint>
+            <span [hidden]="!(formErrors.lastname)">
+              {{formErrors.lastname}}</span>
+          </md-hint>
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="half-width" dividerColor="{{(formErrors.telnum) ? 'warn' : 'primary'}}">
+          <input mdInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required>
+          <md-hint>
+            <span [hidden]="!(formErrors.telnum)">
+              {{formErrors.telnum}}</span>
+          </md-hint>
+        </md-input-container>
+        <md-input-container class="half-width" dividerColor="{{(formErrors.email) ? 'warn' : 'primary'}}">
+          <input mdInput formControlName="email" placeholder="Email" type="email" email required>
+          <md-hint>
+            <span [hidden]="!(formErrors.email)">
+              {{formErrors.email}}</span>
+          </md-hint>
+        </md-input-container>
+      </p>
+      <table class="form-size">
+        <td>
+          <md-slide-toggle formControlName="agree">May we contact you?</md-slide-toggle>
+        </td>
+        <td>
+          <md-select placeholder="How?" formControlName="contacttype">
+            <md-option *ngFor="let ctype of contactType" [value]="ctype">
+              {{ ctype }}
+            </md-option>
+          </md-select>
+        </td>
+      </table>
+      <p>
+        <md-input-container class="full-width">
+          <textarea mdInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
+        </md-input-container>
+      </p>
+      <button type="submit" md-button (click)="isOn = true" class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
+    </form>
+    <!-- need to be true to show-->
+    <div *ngIf="isOnPost">
+      <!-- need to be false to show -->
+      <div *ngIf="!isOn">
+        <md-spinner></md-spinner>
+        <h4>Sending Submission. . . Please Wait</h4>
+      </div>
+    </div>
+    <!-- need to be false to show -->
+    <div *ngIf="!isOnPost" [@expand]>
+      <md-list>
+        <h1 md-line> Your Submission </h1>
+        <md-list-item>
+          <p md-line>
+            <span>First Name: {{PostCopy.firstname}}</span>
           </p>
-          <p>
-            <md-input-container class="half-width" dividerColor="{{(formErrors.telnum) ? 'warn' : 'primary'}}">
-              <input mdInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required>
-              <md-hint>
-                <span [hidden]="!(formErrors.telnum)">
-                  {{formErrors.telnum}}</span>
-              </md-hint>
-            </md-input-container>
-            <md-input-container class="half-width" dividerColor="{{(formErrors.email) ? 'warn' : 'primary'}}">
-              <input mdInput formControlName="email" placeholder="Email" type="email" email required>
-              <md-hint>
-                <span [hidden]="!(formErrors.email)">
-                  {{formErrors.email}}</span>
-              </md-hint>
-            </md-input-container>
+          <p md-line>
+            <span>Last Name: {{PostCopy.lastname}}</span>
           </p>
-          <table class="form-size">
-            <td>
-            <md-slide-toggle formControlName="agree">May we contact you?</md-slide-toggle>
-            </td>
-            <td>
-            <md-select placeholder="How?" formControlName="contacttype">
-              <md-option *ngFor="let ctype of contactType" [value]="ctype">
-                {{ ctype }}
-              </md-option>
-            </md-select>
-            </td>
-            </table>
-          <p>
-            <md-input-container class="full-width">
-              <textarea mdInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
-            </md-input-container>
+          <p md-line>
+            <span>Tel. Number: {{PostCopy.telnum}}</span>
           </p>
-          <button type="submit" md-button (click)="isOn = true" class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
-        </form>
-        <!-- need to be true to show-->
-        <div *ngIf="isOnPost">
-          <!-- need to be false to show -->
-          <div  *ngIf="!isOn">
-            <md-spinner></md-spinner>
-            <h4>Sending Submission. . . Please Wait</h4>
-          </div>
-        </div>
-        <!-- need to be false to show -->
-        <div *ngIf="!isOnPost" [@expand]>
-          <md-list>
-            <h1 md-line> Your Submission </h1>
-            <md-list-item>
-              <p md-line>
-                <span>First Name: {{PostCopy.firstname}}</span>
-              </p>
-              <p md-line>
-                <span>Last Name: {{PostCopy.lastname}}</span>
-              </p>
-              <p md-line>
-                <span>Tel. Number: {{PostCopy.telnum}}</span>
-              </p>
-              <p md-line>
-                <span>Email: {{PostCopy.email}}</span>
-              </p>
-              <p md-line>
-                <span>Contact you?: {{PostCopy.agree}}</span>
-              </p>
-              <p md-line>
-                <span>How?: {{PostCopy.contacttype}}</span>
-              </p>
-              <p md-line>
-                <span>Feedback: {{PostCopy.message}}</span>
-              </p>
-            </md-list-item>
-          </md-list>
-        </div>
-        
+          <p md-line>
+            <span>Email: {{PostCopy.email}}</span>
+          </p>
+          <p md-line>
+            <span>Contact you?: {{PostCopy.agree}}</span>
+          </p>
+          <p md-line>
+            <span>How?: {{PostCopy.contacttype}}</span>
+          </p>
+          <p md-line>
+            <span>Feedback: {{PostCopy.message}}</span>
+          </p>
+        </md-list-item>
+      </md-list>
+    </div>
+
   </div>
 </div>
