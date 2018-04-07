@@ -1,13 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MdSliderModule } from '@angular/material';
+import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/forms';
+
 import 'rxjs/add/operator/switchMap';
 import { switchMap } from 'rxjs/operators';
-import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/forms';
 
 import { MenuComponent } from './../menu/menu.component';
 
+import { visibility, flyInOut, expand } from '../animations/app.animation';
+
 import { Dish } from './../shared/dish';
-import { DISHES } from './../shared/dishes';
+// import { DISHES } from './../shared/dishes';
 import { DishService } from '../services/dish.service';
 import { Comment } from '../shared/comment';
 
@@ -24,18 +27,29 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
-  providers: [DatePipe]
+  providers: [DatePipe],
+  animations: [visibility(), flyInOut(), expand()],
+  // tslint:disable-next-line:use-host-property-decorator
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  }
 })
 export class DishdetailComponent implements OnInit {
 
   dish: Dish;
   dishIds: number[];
+  dishcopy = null;
+
+  visibility = 'shown';
+
   prev: number;
   next: number;
 
   CommentRating: number;
   date: string;
   comment: string;
+  dishErrMess: string;
 
   commentFeedForm: FormGroup;
   commentForm = Comment;
@@ -63,15 +77,20 @@ export class DishdetailComponent implements OnInit {
     private dishservice: DishService,
     private route: ActivatedRoute,
     private location: Location,
-    private fb: FormBuilder
-  ) { this.createForm(); }
+    private fb: FormBuilder,
+    @Inject('BaseURL') public BaseURL) { this.createForm(); }
 
 
   ngOnInit() {
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params
       .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+      .subscribe(dish => {
+        this.dish = dish;
+        this.dishcopy = dish;
+        this.setPrevNext(dish.id);
+        this.visibility = 'shown'; },
+      dishErrMess => this.dish = null, this.dishErrMess = <any>this.dishErrMess);
   }
 
   setPrevNext(dishId: number) {
@@ -111,7 +130,8 @@ export class DishdetailComponent implements OnInit {
     // console.log(this.commentForm);
     console.log(commentFeedForm.value);
     this.dish.comments.push(commentFeedForm.value );
-
+    this.dishcopy.save()
+      .subscribe(dish => { this.dish = dish; console.log(this.dish); });
     this.commentFeedForm.reset({
       author: '',
       comment: '',
@@ -123,17 +143,21 @@ export class DishdetailComponent implements OnInit {
   onValueChanged(data?: any) {
     if (!this.commentFeedForm) { return; }
     const form = this.commentFeedForm;
+    // tslint:disable-next-line:forin
     for (const field in this.formErrors) {
-      // clear previous error message (if any)
+     // clear previous error message (if any)
       this.formErrors[field] = '';
       const control = form.get(field);
-      if (control && control.dirty && !control.valid) {
-        const messages = this.validationMessages[field];
-        for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
+
+        if (control && control.dirty && !control.valid) {
+          const messages = this.validationMessages[field];
+
+          // tslint:disable-next-line:forin
+          for (const key in control.errors) {
+            this.formErrors[field] += messages[key] + ' ';
+            }
         }
       }
-    }
   }
 
 }

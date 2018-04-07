@@ -3,14 +3,14 @@
   <!-- Assignment Week 1 TASK 1-2-->
   <!-- 6. Exercise (Instructions): Angular and Promise Part 2 -->
   <div fxFlex="40">
-    <div *ngIf="dish">
+    <div *ngIf="dish" [@visibility]="visibility">
       <md-card>
         <md-card-header>
           <md-card-title>
             <h3>{{dish.name | uppercase}}</h3>
           </md-card-title>
         </md-card-header>
-        <img md-card-image src={{dish.image}} alt={{dish.name}}>
+        <img class="mat-card-image" src="{{BaseURL + dish.image}}" alt={{dish.name}}>
         <md-card-content>
           <p>{{dish.description}}
           </p>
@@ -37,7 +37,7 @@
   </div>
   <!-- Assignment Week 1 TASK 3 -->
   <div fxFlex="60">
-    <div *ngIf="dish">
+    <div *ngIf="dish" [@visibility]="visibility">
       <md-card>
         <md-card-header>
           <md-card-title>
@@ -115,9 +115,13 @@
         </md-card-content>
       </md-card>
     </div>
-    <div [hidden]="dish">
+    <div [hidden]="dish || dishErrMess">
       <md-spinner></md-spinner>
       <h4>Loading . . . Please Wait</h4>
+    </div>
+    <div *ngIf="dishErrMess">
+      <h2>Error</h2>
+      <h4>{{dishErrMess}}</h4>
     </div>
   </div>
 </div>

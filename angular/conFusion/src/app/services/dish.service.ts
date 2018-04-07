@@ -1,50 +1,65 @@
 import { Injectable } from '@angular/core';
 import { Dish } from '../shared/dish';
-import { DISHES } from '../shared/dishes';
+import { Http, Response } from '@angular/http';
+import { baseURL } from '../shared/baseurl';
+import { ProcessHttpMsgService } from './process-httpmsg.service';
+import { RestangularModule, Restangular } from 'ngx-restangular';
 
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/delay';
-import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
+
 
 @Injectable()
 export class DishService {
 
-  constructor() { }
-
-  // -------------------------------
-  // Simulating Time Delay within the Service
-  // 6. Exercise (Instructions): Angular and Promise Part 2
-  // 4. Exercise (Instructions): Angular and RxJS Part 1
-  // -------------------------------
+  constructor(private http: Http,
+    private processHTTPMsgService: ProcessHttpMsgService,
+    private restangular: Restangular) { }
 
   getDishes(): Observable<Dish[]> {
-    return Observable.of(DISHES).delay(2000);
+    return this.restangular.all('dishes').getList();
   }
-  //   return new Promise(resolve=> {
-  //     // Simulate server latency with 2 second delay
-  //       setTimeout(() => resolve(DISHES), 2000);
-  //   });
-
 
   getDish(id: number): Observable<Dish> {
-    return Observable.of(DISHES.filter((dish) => (dish.id === id))[0]).delay(2000);
-  
-    // return new Promise(resolve => {
-    //   // Simulate server latency with 2 second delay
-    //   setTimeout(() => resolve(DISHES.filter((dish) => (dish.id === id))[0]), 2000);
-    // });
+    return this.restangular.one('dishes', id).get();
   }
 
   getFeaturedDish(): Observable<Dish> {
-      return Observable.of(DISHES.filter((dish) => dish.featured)[0]).delay(2000);
-
-    // return new Promise(resolve => {
-    //   // Simulate server latency with 2 second delay
-    //   setTimeout(() => resolve(DISHES.filter((dish) => dish.featured)[0]), 2000);
-    }
-
-  getDishIds(): Observable<number[]> {
-    return Observable.of(DISHES.map(dish => dish.id )).delay(2000);
+    return this.restangular.all('dishes').getList({ featured: true })
+      .map(dishes => dishes[0]);
   }
+
+  getDishIds(): Observable<number[] | any> {
+    return this.getDishes()
+      .map(dishes => dishes.map(dish => dish.id))
+      .catch(error => error);
   }
+
+  // getDishes(): Observable<Dish[]> {
+  //   return this.http.get(baseURL + 'dishes')
+  //   .map(res => this.processHTTPMsgService.extractData(res))
+  //   .catch(error => this.processHTTPMsgService.handleError(error));
+  // }
+
+  // getDish(id: number): Observable<Dish> {
+  //   return this.http.get(baseURL + 'dishes/' + id)
+  //     .map(res => this.processHTTPMsgService.extractData(res))
+  //     .catch(error => this.processHTTPMsgService.handleError(error));
+  // }
+
+  // getFeaturedDish(): Observable<Dish> {
+  //   return this.http.get(baseURL + 'dishes?featured=true')
+  //     .map(res => this.processHTTPMsgService.extractData(res)[0])
+  //     .catch(error => this.processHTTPMsgService.handleError(error));
+  // }
+
+  // getDishIds(): Observable<number[] | any> {
+  //   return this.getDishes()
+  //     .map(dishes => dishes.map(dish => dish.id))
+  //     .catch(error => error);
+  // }
+}
