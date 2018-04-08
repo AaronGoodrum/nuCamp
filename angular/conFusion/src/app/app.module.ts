@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import 'hammerjs';
 
@@ -56,6 +57,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    HttpClientModule,
     RestangularModule.forRoot(RestangularConfigFactory)
   ],
   entryComponents: [

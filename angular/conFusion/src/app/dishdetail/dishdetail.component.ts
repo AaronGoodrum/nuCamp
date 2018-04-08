@@ -19,10 +19,11 @@ import { Location } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
-    // 4. Exercise (Instructions): Angular and Promise Part 1
-    // 4. Exercise (Instructions): Angular and RxJS Part 1
-    // 4. Exercise (Instructions): Angular and RxJS Part 2
-    // Assignment Week 3 Task 1-2-3
+
+// 4. Exercise (Instructions): Angular and Promise Part 1
+// 4. Exercise (Instructions): Angular and RxJS Part 1
+// 4. Exercise (Instructions): Angular and RxJS Part 2
+// Assignment Week 3 Task 1-2-3
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
@@ -89,8 +90,9 @@ export class DishdetailComponent implements OnInit {
         this.dish = dish;
         this.dishcopy = dish;
         this.setPrevNext(dish.id);
-        this.visibility = 'shown'; },
-      dishErrMess => this.dish = null, this.dishErrMess = <any>this.dishErrMess);
+        this.visibility = 'shown';
+      },
+        dishErrMess => this.dish = null, this.dishErrMess = <any>this.dishErrMess);
   }
 
   setPrevNext(dishId: number) {
@@ -120,7 +122,7 @@ export class DishdetailComponent implements OnInit {
   onSubmit() {
     // Week 3 Assignment Task 3
     // So painful, to do this right.
-    const commentFeedForm = this.commentFeedForm = this.fb.group({
+    const commentFeedForm = this.fb.group({
       author: this.commentFeedForm.value.author,
       comment: this.commentFeedForm.value.comment,
       rating: this.commentFeedForm.value.rating,
@@ -129,9 +131,11 @@ export class DishdetailComponent implements OnInit {
     // this.commentForm = this.commentFeedForm.value;
     // console.log(this.commentForm);
     console.log(commentFeedForm.value);
-    this.dish.comments.push(commentFeedForm.value );
+
+    this.dish.comments.push(commentFeedForm.value);
     this.dishcopy.save()
       .subscribe(dish => { this.dish = dish; console.log(this.dish); });
+
     this.commentFeedForm.reset({
       author: '',
       comment: '',
@@ -145,19 +149,19 @@ export class DishdetailComponent implements OnInit {
     const form = this.commentFeedForm;
     // tslint:disable-next-line:forin
     for (const field in this.formErrors) {
-     // clear previous error message (if any)
+      // clear previous error message (if any)
       this.formErrors[field] = '';
       const control = form.get(field);
 
-        if (control && control.dirty && !control.valid) {
-          const messages = this.validationMessages[field];
+      if (control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
 
-          // tslint:disable-next-line:forin
-          for (const key in control.errors) {
-            this.formErrors[field] += messages[key] + ' ';
-            }
+        // tslint:disable-next-line:forin
+        for (const key in control.errors) {
+          this.formErrors[field] += messages[key] + ' ';
         }
       }
+    }
   }
 
 }

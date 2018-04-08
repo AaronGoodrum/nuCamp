@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { baseURL } from './../shared/baseurl';
+
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { flyInOut, expand } from '../animations/app.animation';
 
 import { Feedback, ContactType } from '../shared/feedback';
+
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
@@ -22,6 +27,10 @@ export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  isOn = true;
+  isOnPost = true;
+  PostCopy = null;
+
   formErrors = {
     'firstname': '',
     'lastname': '',
@@ -51,10 +60,14 @@ export class ContactComponent implements OnInit {
   };
 
   constructor(
-    private fb: FormBuilder
-  ) { this.createForm();  }
+    private http: HttpClient,
+    private fb: FormBuilder,
+    @Inject('BaseURL') public BaseURL) { this.createForm(); }
 
   ngOnInit() {
+    this.isOn = true,
+      this.isOnPost = true;
+    this.http.get(this.BaseURL + 'feedback').subscribe(data => console.log(data));
   }
 
   createForm(): void {
@@ -71,15 +84,31 @@ export class ContactComponent implements OnInit {
 
     this.feedbackForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
-
     this.onValueChanged(); // (re)set validation messages now
-
 
   }
 
-  onSubmit() {
-    this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
+  onSubmit(feedbackForm) {
+    this.isOn = false;
+    setTimeout(() => { this.isOnPost = false; }, 2000);
+    this.PostCopy = this.feedbackForm.value;
+    this.http.post(this.BaseURL + 'feedback', {
+      firstname: this.feedbackForm.value.firstname,
+      lastname: this.feedbackForm.value.lastname,
+      telnum: this.feedbackForm.value.telnum,
+      email: this.feedbackForm.value.email,
+      agree: this.feedbackForm.value.agree,
+      contacttype: this.feedbackForm.value.contacttype,
+      message: this.feedbackForm.value.message,
+      date: new Date()
+    })
+      .subscribe(
+        (data: any) => {
+          this.PostCopy = data,
+            console.log(data);
+        });
+    setTimeout(() => { this.isOn = true, this.isOnPost = true; }, 5000);
+
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',

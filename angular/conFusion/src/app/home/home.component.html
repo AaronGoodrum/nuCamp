@@ -16,12 +16,13 @@
     </md-card-content>
   </md-card>
   <div [hidden]="dish || errMess">
-    <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+    <md-spinner></md-spinner>
+    <h4>Loading . . . Please Wait</h4>
   </div>
-    <div *ngIf="errMess">
-      <h2>Error</h2>
-      <h4>{{errMess}}</h4>
-    </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
 
   <md-card *ngIf="promotion" fxFlex>
     <md-card-header>
@@ -30,19 +31,20 @@
         <h3>{{promotion.name | uppercase}}</h3>
       </md-card-title>
     </md-card-header>
-    <img md-card-image src={{promotion.image}} alt={{promotion.name}}>
+    <img class="mat-card-image" src="{{BaseURL + promotion.image}}" alt={{promotion.name}}>
     <md-card-content>
       <p>{{promotion.description}}
       </p>
     </md-card-content>
   </md-card>
   <div [hidden]="promotion || errMess">
-    <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+    <md-spinner></md-spinner>
+    <h4>Loading . . . Please Wait</h4>
   </div>
-    <div *ngIf="errMess">
-      <h2>Error</h2>
-      <h4>{{errMess}}</h4>
-    </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
 
   <!-- Assignment Week 2 task 3 -->
   <md-card *ngIf="leader" fxFlex>
@@ -52,18 +54,19 @@
         <h3>{{leader.name | uppercase}}</h3>
       </md-card-title>
     </md-card-header>
-    <img md-card-image src={{leader.image}} alt={{leader.name}}>
+    <img md-card-image src="{{BaseURL + leader.image}}" alt={{leader.name}}>
     <md-card-content>
       <p>{{leader.description}}
       </p>
     </md-card-content>
   </md-card>
   <div [hidden]="leader || errMess">
-    <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+    <md-spinner></md-spinner>
+    <h4>Loading . . . Please Wait</h4>
   </div>
-    <div *ngIf="errMess">
-      <h2>Error</h2>
-      <h4>{{errMess}}</h4>
-    </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
 
 </div>
