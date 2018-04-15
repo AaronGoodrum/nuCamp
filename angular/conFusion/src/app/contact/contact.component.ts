@@ -66,7 +66,7 @@ export class ContactComponent implements OnInit {
 
   ngOnInit() {
     this.isOn = true,
-      this.isOnPost = true;
+    this.isOnPost = true;
     this.http.get(this.BaseURL + 'feedback').subscribe(data => console.log(data));
   }
 
