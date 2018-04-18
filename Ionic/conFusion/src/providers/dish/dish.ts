@@ -16,8 +16,9 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class DishProvider {
 
-  constructor(public http: Http,
-    private processHTTPMsgService: ProcessHttpmsgProvider) { }
+  constructor(
+    public http: Http,
+    public processHTTPMsgService: ProcessHttpmsgProvider) { }
 
   getDishes(): Observable<Dish[]> {
     return this.http.get(baseURL + 'dishes')
