@@ -20,13 +20,16 @@ export class DishdetailPage {
   avgstars: string;
   numcomments: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    @Inject('BaseURL') public BaseURL) {
-    this.dish = navParams.get('dish');
-    this.numcomments = this.dish.comments.length;
-    let total = 0;
-    this.dish.comments.forEach(comment => total += comment.rating);
-    this.avgstars = (total / this.numcomments).toFixed(2);
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    @Inject('BaseURL') public BaseURL) 
+    {
+      this.dish = navParams.get('dish');
+      this.numcomments = this.dish.comments.length;
+      let total = 0;
+      this.dish.comments.forEach(comment => total += comment.rating);
+      this.avgstars = (total / this.numcomments).toFixed(2);
   }
 
   ionViewDidLoad() {

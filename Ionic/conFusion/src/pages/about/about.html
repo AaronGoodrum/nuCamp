@@ -40,7 +40,12 @@
       Corporate Leadership
     </ion-card-header>
     <ion-card-content *ngFor="let leader of leaders">
-      <ion-avatar>{{BaseURL + leader.image}}</ion-avatar>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{BaseURL + leader.image}}">
+        </ion-avatar>
+      </ion-item>
+
       <ion-card-title>
         {{leader.name}}, {{leader.abbr}}
       </ion-card-title>
@@ -49,3 +54,4 @@
   </ion-card>
 
 </ion-content>
+
