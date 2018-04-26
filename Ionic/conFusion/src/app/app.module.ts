@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -9,6 +10,8 @@ import { AboutPage } from '../pages/about/about';
 import { MenuPage } from '../pages/menu/menu';
 import { ContactPage } from '../pages/contact/contact';
 import { DishdetailPage } from '../pages/dishdetail/dishdetail';
+import { FavoritesPage } from './../pages/favorites/favorites';
+import { ReservationPage } from '../pages/reservation/reservation';
 
 import { baseURL } from '../shared/baseurl';
 
@@ -20,7 +23,6 @@ import { LeaderProvider } from '../providers/leader/leader';
 import { PromotionProvider } from '../providers/promotion/promotion';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
 import { FavoriteProvider } from '../providers/favorite/favorite';
-import { ReservationPage } from '../pages/reservation/reservation';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { ReservationPage } from '../pages/reservation/reservation';
     MenuPage,
     ContactPage,
     DishdetailPage,
+    FavoritesPage,
     ReservationPage
   ],
   imports: [
@@ -45,6 +48,7 @@ import { ReservationPage } from '../pages/reservation/reservation';
     MenuPage,
     ContactPage,
     DishdetailPage,
+    FavoritesPage,
     ReservationPage
   ],
   providers: [

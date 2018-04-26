@@ -7,10 +7,17 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Dish Details</ion-title>
+    <ion-row>
+<ion-title align-items-stretch>Dish Details </ion-title>
+      <ion-col align-items-end>
+        <button ion-button icon (click)="openMenu()">
+          <ion-icon name="reorder"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
   </ion-navbar>
-
 </ion-header>
+
 
 
 <ion-content padding>

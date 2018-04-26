@@ -3,10 +3,6 @@
     <ion-toolbar color="primary-dark">
       <ion-title>Ristorante Con Fusion</ion-title>
     </ion-toolbar>
-    <button color="primary-pale" menuClose ion-item (click)="openReserve()">
-        <ion-icon name="restaurant" item-left></ion-icon>
-        Reserve Table
-      </button>
   </ion-header>
 
 
@@ -16,6 +12,11 @@
       <ion-icon [name]="p.icon" item-left></ion-icon>
       {{p.title}}
     </button>
+    <button color="primary-pale" menuClose ion-item (click)="openReserve()">
+      <ion-icon name="restaurant" item-left></ion-icon>
+      Reserve Table
+    </button>
+
     </ion-list>
   </ion-content>
 
