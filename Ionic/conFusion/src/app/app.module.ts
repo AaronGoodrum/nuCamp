@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -12,6 +11,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { DishdetailPage } from '../pages/dishdetail/dishdetail';
 import { FavoritesPage } from './../pages/favorites/favorites';
 import { ReservationPage } from '../pages/reservation/reservation';
+import { CommentsPage } from './../pages/comments/comments';
 
 import { baseURL } from '../shared/baseurl';
 
@@ -33,7 +33,8 @@ import { FavoriteProvider } from '../providers/favorite/favorite';
     ContactPage,
     DishdetailPage,
     FavoritesPage,
-    ReservationPage
+    ReservationPage,
+    CommentsPage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +50,8 @@ import { FavoriteProvider } from '../providers/favorite/favorite';
     ContactPage,
     DishdetailPage,
     FavoritesPage,
-    ReservationPage
+    ReservationPage,
+    CommentsPage
   ],
   providers: [
     StatusBar,

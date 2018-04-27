@@ -1,8 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, Platform, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Platform, ActionSheetController, ModalController } from 'ionic-angular';
 import { Dish } from '../../shared/dish';
 import { Comment } from '../../shared/comment';
 import { FavoriteProvider } from '../../providers/favorite/favorite';
+import { CommentsPage } from './../comments/comments';
 
 /**
  * Generated class for the DishdetailPage page.
@@ -29,6 +30,7 @@ export class DishdetailPage {
     private favoriteservice: FavoriteProvider,
     private toastCtrl: ToastController,
     public platform: Platform,
+    public modalCtrl: ModalController,
     public actionsheetCtrl: ActionSheetController
   ) {
       this.dish = navParams.get('dish');
@@ -51,6 +53,11 @@ export class DishdetailPage {
       position: 'middle',
       duration: 3000}).present();
   }
+  
+  openComments() {
+    let modal = this.modalCtrl.create(CommentsPage);
+    modal.present();
+  }
 
   openMenu() {
     let actionSheet = this.actionsheetCtrl.create({
@@ -69,7 +76,8 @@ export class DishdetailPage {
           text: 'Add Comment',
           icon: !this.platform.is('ios') ? 'text' : null,
           handler: () => {
-            console.log('Share clicked');
+            this.openComments();
+            console.log('Comment clicked');
           }
         },
         {

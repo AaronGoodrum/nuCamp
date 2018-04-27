@@ -9,6 +9,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { ContactPage } from '../pages/contact/contact';
 import { ReservationPage } from '../pages/reservation/reservation';
 import { FavoritesPage } from './../pages/favorites/favorites';
+import { CommentsPage } from './../pages/comments/comments';
 
 
 @Component({
