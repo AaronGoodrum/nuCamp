@@ -43,6 +43,8 @@ export class DishdetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DishdetailPage');
+    let myComment = this.navParams.get('myComment');
+    console.log(myComment);
   }
 
   addToFavorites() {
@@ -56,6 +58,9 @@ export class DishdetailPage {
   
   openComments() {
     let modal = this.modalCtrl.create(CommentsPage);
+    modal.onDidDismiss((myComment) => {
+      this.dish.comments.push(myComment);
+    })
     modal.present();
   }
 

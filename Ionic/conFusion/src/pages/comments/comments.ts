@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { DishdetailPage } from './../dishdetail/dishdetail';
 
 /**
  * Generated class for the CommentsPage page.
@@ -18,6 +19,7 @@ export class CommentsPage {
 
   comment: FormGroup;
   stars: number = 3
+  myComment= '';
 
   constructor(
     public navCtrl: NavController, 
@@ -29,7 +31,7 @@ export class CommentsPage {
       author: ['', Validators.required],
       comment: ['', Validators.required],
       rating: 3,
-      dateTime: new Date().toISOString()
+      date: new Date().toISOString()
     })
   }
 
@@ -38,12 +40,14 @@ export class CommentsPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    // pushing data from comment form to dishdetailPage
+    let myComment = this.comment.value;
+    this.viewCtrl.dismiss(myComment);
     console.log('view Dismiss');
   }
 
   onSubmit(){
-    console.log(this.comment.value);
+    // console.log(this.comment.value);
     this.dismiss();
   }
 
