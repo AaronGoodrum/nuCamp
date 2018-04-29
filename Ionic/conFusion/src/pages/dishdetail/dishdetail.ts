@@ -55,12 +55,18 @@ export class DishdetailPage {
       position: 'middle',
       duration: 3000}).present();
   }
-  
+
   openComments() {
     let modal = this.modalCtrl.create(CommentsPage);
     modal.onDidDismiss((myComment) => {
+      if (myComment){
       this.dish.comments.push(myComment);
-    })
+      this.numcomments = this.dish.comments.length;
+      let total = 0;
+      this.dish.comments.forEach(comment => total += comment.rating);
+      this.avgstars = (total / this.numcomments).toFixed(2);
+      }
+      })
     modal.present();
   }
 

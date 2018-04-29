@@ -26,7 +26,7 @@ export class FavoritesPage implements OnInit {
     public toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    @Inject('BaseURL') private BaseURL,) {
+    @Inject('BaseURL') public BaseURL,) {
   }
 
   ngOnInit() {
@@ -41,10 +41,11 @@ export class FavoritesPage implements OnInit {
 
   deleteFavorite(item: ItemSliding, id: number) {
     console.log('delete', id);
+    console.log (this.favorites);
 
       let alert = this.alertCtrl.create({
       title: 'Confirm Delete',
-      message: 'Do you want to delete Dish '+ id,
+      message: 'Do you want to delete Dish '+ this.favorites[id].name,
       buttons: [
         {
           text: 'Cancel',

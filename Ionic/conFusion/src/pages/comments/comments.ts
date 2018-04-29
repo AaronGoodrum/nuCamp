@@ -22,7 +22,7 @@ export class CommentsPage {
   myComment= '';
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     private formBuilder: FormBuilder
@@ -40,15 +40,15 @@ export class CommentsPage {
   }
 
   dismiss() {
-    // pushing data from comment form to dishdetailPage
-    let myComment = this.comment.value;
-    this.viewCtrl.dismiss(myComment);
+    this.viewCtrl.dismiss();
     console.log('view Dismiss');
   }
 
   onSubmit(){
     // console.log(this.comment.value);
-    this.dismiss();
+    // pushing data from comment form to dishdetailPage
+    let myComment = this.comment.value;
+    this.viewCtrl.dismiss(myComment);
   }
 
 }
