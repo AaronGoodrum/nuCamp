@@ -73,7 +73,7 @@ export class DishdetailPage {
   openMenu() {
     let actionSheet = this.actionsheetCtrl.create({
       title: 'Select Actions',
-      cssClass: 'action-sheets-basic-page',
+      cssClass: 'action-sheets-groups-page',
       buttons: [
         {
           text: 'Add to Favorite',

@@ -1,3 +1,4 @@
+import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -60,4 +61,8 @@ export class MyApp {
     modal.present();
   }
 
+  openLogin() {
+    let modal = this.modalCtrl.create(LoginPage);
+    modal.present();
+  }
 }
