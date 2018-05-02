@@ -1,12 +1,12 @@
 <ion-header>
 
   <ion-toolbar color="primary-pale">
-    <ion-buttons start>
-      <button ion-button (click)="dismiss()">
-        <span ion-text color="primary" showWhen="ios">Cancel</span>
-        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+    <ion-buttons end>
+      <button ion-button (click)="dismiss()" color="dark">
+        <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
+
     <ion-title>Login</ion-title>
   </ion-toolbar>
 
@@ -30,3 +30,4 @@
     <button ion-button type="submit" [disabled]="!loginForm.valid">Login</button>
   </form>
 </ion-content>
+
