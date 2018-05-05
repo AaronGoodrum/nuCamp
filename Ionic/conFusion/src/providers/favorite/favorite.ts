@@ -87,6 +87,7 @@ export class FavoriteProvider {
   }
 
   getAllFavoriteDISH() {
+    console.log([STORAGE_KEY], 'line 90')
     return this.storage.get(STORAGE_KEY);
   }
 

@@ -1,3 +1,4 @@
+import { Dish } from './../../shared/dish';
 import { Component, OnInit, Inject } from '@angular/core';
 import { IonicPage, NavController, NavParams, ItemSliding, ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { FavoriteProvider } from '../../providers/favorite/favorite';
@@ -33,12 +34,13 @@ export class FavoritesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.favoriteservice.getAllFavoriteDISH()
-      .then(favorites => this.favorites = favorites,
-        errmess => this.errMess = errmess);
-    // this.favoriteservice.getFavorites()
-    //   .subscribe(favorites => this.favorites = favorites,
+    // this.favoriteservice.getAllFavoriteDISH()
+    //   .then(favorites => this.favorites = favorites,
     //     errmess => this.errMess = errmess);
+    //     console.log(this.favorites, 'line 39')
+    this.favoriteservice.getFavorites()
+      .subscribe(favorites => this.favorites = favorites,
+        errmess => this.errMess = errmess);
   }
 
   ionViewDidLoad() {
@@ -70,7 +72,7 @@ export class FavoritesPage implements OnInit {
               message: 'Dish ' + id + ' deleted successfully',
               duration: 3000});
             loading.present();
-            this.favoriteservice.unfavoriteDish(id);
+            this.favoriteservice.unfavoriteDish;
             this.favoriteservice.deleteFavorite(id)
               .subscribe(favorites => {this.favorites = favorites; loading.dismiss(); toast.present(); } ,
                 errmess =>{ this.errMess = errmess; loading.dismiss(); });
