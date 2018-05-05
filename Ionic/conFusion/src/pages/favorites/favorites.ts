@@ -35,59 +35,59 @@ export class FavoritesPage implements OnInit {
   }
 
   ngOnInit() {
-    var STORAGE_KEY = this.storage.get('STORAGE_KEY');
-    Promise.all([STORAGE_KEY]).then((arrayData) => {
-      console.log(arrayData);
-      this.favorites = arrayData;
-    });
-    // this.favoriteservice.getFavorites()
-    //   .subscribe(favorites => this.favorites = favorites,
-    //     errmess => this.errMess = errmess);
+    // var STORAGE_KEY = this.storage.get('STORAGE_KEY');
+    // Promise.all([STORAGE_KEY]).then((arrayData) => {
+    //   console.log(arrayData);
+    //   this.favorites = arrayData;
+    // });
+    this.favoriteservice.getFavorites()
+      .subscribe(favorites => this.favorites = favorites,
+        errmess => this.errMess = errmess);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FavoritesPage');
   }
 
-  // deleteFavorite(item: ItemSliding, id: number) {
-  //   console.log('delete', id);
-  //   console.log (this.favorites);
+  deleteFavorite(item: ItemSliding, id: number) {
+    console.log('delete', id);
+    console.log (this.favorites);
 
-  //     let alert = this.alertCtrl.create({
-  //     title: 'Confirm Delete',
-  //     message: 'Do you want to delete Dish '+ this.favorites[id].name,
-  //     buttons: [
-  //       {
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         handler: () => {
-  //           console.log('Delete cancelled');
-  //         }
-  //       },
-  //       {
-  //         text: 'Delete',
-  //         handler: () => {
-  //           let loading = this.loadingCtrl.create({
-  //             content: 'Deleting . . .'
-  //           });
-  //           let toast = this.toastCtrl.create({
-  //             message: 'Dish ' + id + ' deleted successfully',
-  //             duration: 3000});
-  //           loading.present();
-  //           this.favoriteservice.unfavoriteDish;
-  //           this.favoriteservice.deleteFavorite(id)
-  //             .subscribe(favorites => {this.favorites = favorites; loading.dismiss(); toast.present(); } ,
-  //               errmess =>{ this.errMess = errmess; loading.dismiss(); });
-  //         }
-  //       }
-  //     ]
-  //   });
+      let alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Do you want to delete Dish '+ this.favorites[id].name,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Delete cancelled');
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            let loading = this.loadingCtrl.create({
+              content: 'Deleting . . .'
+            });
+            let toast = this.toastCtrl.create({
+              message: 'Dish ' + id + ' deleted successfully',
+              duration: 3000});
+            loading.present();
+            this.favoriteservice.unfavoriteDish;
+            this.favoriteservice.deleteFavorite(id)
+              .subscribe(favorites => {this.favorites = favorites; loading.dismiss(); toast.present(); } ,
+                errmess =>{ this.errMess = errmess; loading.dismiss(); });
+          }
+        }
+      ]
+    });
 
-  //   alert.present();
+    alert.present();
 
-  //   item.close();
+    item.close();
 
 
-  // }
+  }
 
 }

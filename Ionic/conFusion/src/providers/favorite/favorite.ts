@@ -78,7 +78,6 @@ export class FavoriteProvider {
   getAllFavoriteDISH() {
     // return this.storage.get('STORAGE_KEY').then((res) =>{
     //   console.log(res);
-    });
   }
 
 }
