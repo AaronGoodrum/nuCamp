@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Dish } from '../../shared/dish';
 import { Observable } from 'rxjs/Observable';
 import { DishProvider } from '../dish/dish';
+import { Storage } from '@ionic/storage';
 
+const STORAGE_KEY = 'favoriteDishs';
 
 /*
   Generated class for the FavoriteProvider provider.
@@ -18,6 +20,7 @@ export class FavoriteProvider {
 
   constructor(
     public http: Http,
+    public storage: Storage,
     private dishservice: DishProvider
   ) {
     console.log('Hello FavoriteProvider Provider');
@@ -27,6 +30,7 @@ export class FavoriteProvider {
   addFavorite(id: number): boolean {
     if (!this.isFavorite(id))
       this.favorites.push(id);
+      this.favoriteDISH(id);
     console.log('favorites', this.favorites);
     return true;
   }
@@ -42,6 +46,7 @@ export class FavoriteProvider {
 
   deleteFavorite(id: number): Observable<Dish[]> {
     let index = this.favorites.indexOf(id);
+    this.unfavoriteDish(index)
     if (index >= 0) {
       this.favorites.splice(index,1);
       return this.getFavorites();
@@ -51,4 +56,39 @@ export class FavoriteProvider {
       return Observable.throw('Deleting non-existant favorite' + id);
     }
   }
+  /////////
+  isDishFavorite(dishID) {
+    return this.getAllFavoriteDISH().then(result => {
+      return result && result.indexOf(dishID) !== -1;
+    });
+  }
+
+  favoriteDISH(dishID) {
+    return this.getAllFavoriteDISH().then(result => {
+      if (result) {
+        result.push(dishID);
+        console.log('Line 70', [dishID])
+        return this.storage.set(STORAGE_KEY, result);
+      } else {
+        console.log('Line 73')
+        return this.storage.set(STORAGE_KEY, [dishID]);
+      }
+    });
+  }
+
+  unfavoriteDish(dishID) {
+    return this.getAllFavoriteDISH().then(result => {
+      if (result) {
+        var index = result.indexOf(dishID);
+        result.splice(index, 1);
+        return this.storage.set(STORAGE_KEY, result);
+      }
+    });
+  }
+
+  getAllFavoriteDISH() {
+    return this.storage.get(STORAGE_KEY);
+  }
+
+
 }

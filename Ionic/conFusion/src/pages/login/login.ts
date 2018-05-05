@@ -14,7 +14,7 @@ import { User } from '../../shared/user';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-})
+}) 
 export class LoginPage {
 
   loginForm: FormGroup;

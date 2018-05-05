@@ -19,6 +19,7 @@ export class FavoritesPage implements OnInit {
   favorites: Dish[];
   errMess: string;
 
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -27,12 +28,17 @@ export class FavoritesPage implements OnInit {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     @Inject('BaseURL') public BaseURL,) {
+
+    // storage.get(this.favorites).then(favorites => { });
   }
 
   ngOnInit() {
-    this.favoriteservice.getFavorites()
-      .subscribe(favorites => this.favorites = favorites,
+    this.favoriteservice.getAllFavoriteDISH()
+      .then(favorites => this.favorites = favorites,
         errmess => this.errMess = errmess);
+    // this.favoriteservice.getFavorites()
+    //   .subscribe(favorites => this.favorites = favorites,
+    //     errmess => this.errMess = errmess);
   }
 
   ionViewDidLoad() {
@@ -64,6 +70,7 @@ export class FavoritesPage implements OnInit {
               message: 'Dish ' + id + ' deleted successfully',
               duration: 3000});
             loading.present();
+            this.favoriteservice.unfavoriteDish(id);
             this.favoriteservice.deleteFavorite(id)
               .subscribe(favorites => {this.favorites = favorites; loading.dismiss(); toast.present(); } ,
                 errmess =>{ this.errMess = errmess; loading.dismiss(); });
