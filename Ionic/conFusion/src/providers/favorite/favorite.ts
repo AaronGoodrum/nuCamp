@@ -30,6 +30,7 @@ export class FavoriteProvider {
   addFavorite(id: number): boolean {
     if (!this.isFavorite(id))
       this.favorites.push(id);
+      this.storage.set('favorites', this.favorites);
     console.log('favorites', this.favorites);
     return true;
   }
@@ -39,6 +40,9 @@ export class FavoriteProvider {
   }
 
   getFavorites(): Observable<Dish[]> {
+    this.storage.get('favorites').then (res => {
+      this.favorites = res
+    });
     return this.dishservice.getDishes()
       .map(dishes => dishes.filter(dish => this.favorites.some(el => el === dish.id)));
   }
@@ -47,6 +51,7 @@ export class FavoriteProvider {
     let index = this.favorites.indexOf(id);
     if (index >= 0) {
       this.favorites.splice(index,1);
+      this.storage.set('favorites', this.favorites);
       return this.getFavorites();
     }
     else {
@@ -54,30 +59,4 @@ export class FavoriteProvider {
       return Observable.throw('Deleting non-existant favorite' + id);
     }
   }
-  /////////
-  isDishFavorite(dishID) {
-
-  }
-
-  favoriteDISH(dishID) {
-     if(dishID==null) return;
-     this.favorites = ['dishID', dishID]
-    this.storage.set('STORAGE_KEY', JSON.stringify(this.favorites))
-  }
-
-  unfavoriteDish(dishID) {
-    // return this.getAllFavoriteDISH().then(result => {
-    //   if (result) {
-    //     var index = result.indexOf(dishID);
-    //     result.splice(index, 1);
-    //     return this.storage.set(STORAGE_KEY[dishID], result);
-    //   }
-    // });
-  }
-
-  getAllFavoriteDISH() {
-    // return this.storage.get('STORAGE_KEY').then((res) =>{
-    //   console.log(res);
-  }
-
 }

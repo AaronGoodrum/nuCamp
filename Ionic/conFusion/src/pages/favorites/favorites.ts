@@ -35,11 +35,6 @@ export class FavoritesPage implements OnInit {
   }
 
   ngOnInit() {
-    // var STORAGE_KEY = this.storage.get('STORAGE_KEY');
-    // Promise.all([STORAGE_KEY]).then((arrayData) => {
-    //   console.log(arrayData);
-    //   this.favorites = arrayData;
-    // });
     this.favoriteservice.getFavorites()
       .subscribe(favorites => this.favorites = favorites,
         errmess => this.errMess = errmess);
@@ -74,7 +69,6 @@ export class FavoritesPage implements OnInit {
               message: 'Dish ' + id + ' deleted successfully',
               duration: 3000});
             loading.present();
-            this.favoriteservice.unfavoriteDish;
             this.favoriteservice.deleteFavorite(id)
               .subscribe(favorites => {this.favorites = favorites; loading.dismiss(); toast.present(); } ,
                 errmess =>{ this.errMess = errmess; loading.dismiss(); });
