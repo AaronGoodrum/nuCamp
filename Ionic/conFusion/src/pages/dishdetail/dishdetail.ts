@@ -49,6 +49,7 @@ export class DishdetailPage {
 
   addToFavorites() {
     console.log('Adding to Favorites', this.dish.id);
+    this.favoriteservice.favoriteDISH(this.dish.id);
     this.favorite = this.favoriteservice.addFavorite(this.dish.id);
     this.toastCtrl.create({
       message: 'Dish ' + this.dish.name + ' added as favorite successfully',
