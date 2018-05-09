@@ -4,7 +4,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { LocalNotifications } from '@ionic-native/local-notifications';
+
 
 
 import { MyApp } from './app.component';
@@ -22,6 +22,9 @@ import { baseURL } from '../shared/baseurl';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { CallNumber } from '@ionic-native/call-number';
 
 import { DishProvider } from '../providers/dish/dish';
 import { LeaderProvider } from '../providers/leader/leader';
@@ -71,7 +74,9 @@ import { FavoriteProvider } from '../providers/favorite/favorite';
     ProcessHttpmsgProvider,
     { provide: 'BaseURL', useValue: baseURL },
     FavoriteProvider,
-    LocalNotifications
+    LocalNotifications,
+    EmailComposer,
+    CallNumber
   ]
 })
 export class AppModule {}

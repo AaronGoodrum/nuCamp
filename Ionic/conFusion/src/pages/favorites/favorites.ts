@@ -66,7 +66,7 @@ export class FavoritesPage implements OnInit {
               content: 'Deleting . . .'
             });
             let toast = this.toastCtrl.create({
-              message: 'Dish ' + id + ' deleted successfully',
+              message: 'Dish ' + this.favorites[id].name + ' deleted successfully',
               duration: 3000});
             loading.present();
             this.favoriteservice.deleteFavorite(id)

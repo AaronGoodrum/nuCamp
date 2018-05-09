@@ -7,9 +7,6 @@ import { Storage } from '@ionic/storage';
 
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
-
-const STORAGE_KEY: Array < string > =[];
-
 /*
   Generated class for the FavoriteProvider provider.
 
@@ -29,17 +26,18 @@ export class FavoriteProvider {
   ) {
     console.log('Hello FavoriteProvider Provider');
     this.favorites = [];
-        // Schedule a single notification
+  }
+
+  addFavorite(id: number): boolean {
+    if (!this.isFavorite(id)) {
+      this.favorites.push(id);
+      this.storage.set('favorites', this.favorites);
+              // Schedule a single notification
     this.localNotifications.schedule({
       id: id,
       text: 'Dish ' + id + ' added as a favorite successfully'
     });
-  }
-
-  addFavorite(id: number): boolean {
-    if (!this.isFavorite(id))
-      this.favorites.push(id);
-      this.storage.set('favorites', this.favorites);
+    }
     console.log('favorites', this.favorites);
     return true;
   }
