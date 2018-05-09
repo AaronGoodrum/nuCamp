@@ -19,7 +19,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class RegisterPage {
 
   registerForm: FormGroup;
-  image: string = 'assets/images/logo.png';
+  image: string = 'assets/imgs/logo.png';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private viewCtrl: ViewController,

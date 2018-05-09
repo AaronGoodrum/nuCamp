@@ -27,6 +27,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { CallNumber } from '@ionic-native/call-number';
 import { Camera } from '@ionic-native/camera';
+import { Network } from '@ionic-native/network';
 
 import { DishProvider } from '../providers/dish/dish';
 import { LeaderProvider } from '../providers/leader/leader';
@@ -81,7 +82,8 @@ import { FavoriteProvider } from '../providers/favorite/favorite';
     LocalNotifications,
     EmailComposer,
     CallNumber,
-    Camera
+    Camera,
+    Network
   ]
 })
 export class AppModule {}
