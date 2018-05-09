@@ -22,6 +22,7 @@
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
     "@ionic-native/call-number": "^4.7.0",
+    "@ionic-native/camera": "^4.7.0",
     "@ionic-native/core": "4.6.0",
     "@ionic-native/email-composer": "^4.7.0",
     "@ionic-native/local-notifications": "^4.7.0",
@@ -33,6 +34,7 @@
     "cordova-android": "7.0.0",
     "cordova-browser": "^5.0.3",
     "cordova-plugin-app-event": "^1.2.1",
+    "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-email": "^1.2.7",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
@@ -62,7 +64,8 @@
       "cordova-sqlite-storage": {},
       "de.appplant.cordova.plugin.local-notification": {},
       "cordova-plugin-email": {},
-      "mx.ferreyra.callnumber": {}
+      "mx.ferreyra.callnumber": {},
+      "cordova-plugin-camera": {}
     },
     "platforms": [
       "android",
