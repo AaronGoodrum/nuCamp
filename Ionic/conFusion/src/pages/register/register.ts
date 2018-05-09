@@ -43,6 +43,27 @@ export class RegisterPage {
     dismiss() {
     this.viewCtrl.dismiss(true);
   }
+   
+  getFromLibrary() {
+    
+    // var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
+    const options: CameraOptions = {
+      quality: 100,
+      targetHeight: 100,
+      targetWidth: 100,
+      correctOrientation: true,
+      allowEdit: true,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.PNG
+    }
+
+    this.camera.getPicture(options).then ((imageUri) => {
+      this.image = imageUri;
+    }, (err) => {
+        console.debug("Unable to obtain picture: " + err, "app");
+
+    }, options);
+  }
 
   getPicture() {
     const options: CameraOptions = {

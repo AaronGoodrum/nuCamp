@@ -29,7 +29,6 @@ export class LoginPage {
 
     storage.get('user').then(user => {
       if (user) {
-        console.log(user);
         this.user = user;
         this.loginForm
           .patchValue({
@@ -69,7 +68,7 @@ export class LoginPage {
       this.storage.remove('user');
     this.viewCtrl.dismiss();
   }
-  
+
     openRegister() {
     let modal = this.modalCtrl.create(RegisterPage);
     modal.present();
