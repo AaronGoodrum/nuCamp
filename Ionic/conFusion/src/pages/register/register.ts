@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import {  NavController, NavParams, ViewController } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
@@ -11,7 +11,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @()
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
@@ -20,6 +20,7 @@ export class RegisterPage {
 
   registerForm: FormGroup;
   image: string = 'assets/imgs/logo.png';
+  imageUri: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private viewCtrl: ViewController,
@@ -53,16 +54,17 @@ export class RegisterPage {
       targetWidth: 100,
       correctOrientation: true,
       allowEdit: true,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.PNG
     }
 
-    this.camera.getPicture(options).then ((imageUri) => {
+    this.camera.getPicture(options).then(imageUri => {
       this.image = imageUri;
     }, (err) => {
         console.debug("Unable to obtain picture: " + err, "app");
 
-    }, options);
+    });
   }
 
   getPicture() {

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { Leader } from '../../shared/leader';
 import { LeaderProvider } from '../../providers/leader/leader';
@@ -11,7 +11,6 @@ import { LeaderProvider } from '../../providers/leader/leader';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html',

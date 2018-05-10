@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DishdetailPage } from './../dishdetail/dishdetail';
 
@@ -10,7 +10,7 @@ import { DishdetailPage } from './../dishdetail/dishdetail';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @()
 @Component({
   selector: 'page-comments',
   templateUrl: 'comments.html',
