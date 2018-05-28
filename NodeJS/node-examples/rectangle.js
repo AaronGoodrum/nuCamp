@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 // Using Callbacks in Node applications
 // Error handling in Node applications
 module.exports = (x, y, callback) => {
