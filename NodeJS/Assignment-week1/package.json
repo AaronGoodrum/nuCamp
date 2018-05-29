@@ -1,7 +1,7 @@
 {
-  "name": "node-express",
+  "name": "assignment-week1",
   "version": "1.0.0",
-  "description": "Node Express Examples",
+  "description": "Node Express Assignment-week1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,5 +13,6 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "morgan": "^1.9.0"
-  }
+  },
+  "devDependencies": {}
 }
