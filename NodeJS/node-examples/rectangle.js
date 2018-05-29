@@ -15,7 +15,7 @@ module.exports = (x, y, callback) => {
                 area: () => (x * y)
             }),
             2000);
-}
+};
 
 
 exports.perimeter = (x, y) => (2 * (x + y));
