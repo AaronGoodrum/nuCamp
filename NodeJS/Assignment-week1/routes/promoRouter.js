@@ -1,11 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var leaderRouter = express.Router();
+var promoRouter = express.Router();
 
-leaderRouter.use(bodyParser.json());
+promoRouter.use(bodyParser.json());
 
-leaderRouter.route('/')
+promoRouter.route('/')
     .all(function (req, res, next) {
         res.writeHead(200, {
             'Content-Type': 'text/plain'
@@ -14,18 +14,18 @@ leaderRouter.route('/')
     })
 
     .get(function (req, res, next) {
-        res.end('Will send all the leaders to you!');
+        res.end('Will send all the promotions to you!');
     })
 
     .post(function (req, res, next) {
-        res.end('Will add the leader: ' + req.body.name + ' with details: ' + req.body.description);
+        res.end('Will add the promotion: ' + req.body.name + ' with details: ' + req.body.description);
     })
 
     .delete(function (req, res, next) {
-        res.end('Deleting all leaders');
+        res.end('Deleting all promotions');
     });
 
-leaderRouter.route('/:leaderId')
+promoRouter.route('/:promoId')
     .all(function (req, res, next) {
         res.writeHead(200, {
             'Content-Type': 'text/plain'
@@ -34,17 +34,17 @@ leaderRouter.route('/:leaderId')
     })
 
     .get(function (req, res, next) {
-        res.end('Will send details of the leader: ' + req.params.leaderId + ' to you!');
+        res.end('Will send details of the promotion: ' + req.params.promoId + ' to you!');
     })
 
     .put(function (req, res, next) {
-        res.write('Updating the leader: ' + req.params.leaderId + '\n');
-        res.end('Will update the leader: ' + req.body.name +
+        res.write('Updating the promotion: ' + req.params.promoId + '\n');
+        res.end('Will update the promotion: ' + req.body.name +
             ' with details: ' + req.body.description);
     })
 
     .delete(function (req, res, next) {
-        res.end('Deleting leader: ' + req.params.leaderId);
+        res.end('Deleting promotion: ' + req.params.promoId);
     });
 
-module.exports = leaderRouter;
+module.exports = promoRouter;
