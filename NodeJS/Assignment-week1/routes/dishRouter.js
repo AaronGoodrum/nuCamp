@@ -39,6 +39,8 @@ dishRouter.route('/:dishId')
     })
 
     .put(function (req, res, next) {
+        // Json .put 
+        // { "name": "xTESTx", "description": "xTESTx" }
         res.write('Updating the dish: ' + req.params.dishId + '\n');
         res.end('Will update the dish: ' + req.body.name +
             ' with details: ' + req.body.description);

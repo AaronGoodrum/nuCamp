@@ -38,6 +38,8 @@ leaderRouter.route('/:leaderId')
     })
 
     .put(function (req, res, next) {
+        // Json .put 
+        // { "name": "xTESTx", "description": "xTESTx" }
         res.write('Updating the leader: ' + req.params.leaderId + '\n');
         res.end('Will update the leader: ' + req.body.name +
             ' with details: ' + req.body.description);

@@ -38,6 +38,8 @@ promoRouter.route('/:promoId')
     })
 
     .put(function (req, res, next) {
+        // Json .put 
+        // { "name": "xTESTx", "description": "xTESTx" }
         res.write('Updating the promotion: ' + req.params.promoId + '\n');
         res.end('Will update the promotion: ' + req.body.name +
             ' with details: ' + req.body.description);
