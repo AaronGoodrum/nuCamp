@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 require('mongoose-currency').loadType(mongoose);
 var Currency = mongoose.Types.Currency;
 
+// Schema -  organization of data as a blueprint of how the database is constructed
 var commentSchema = new Schema({
     rating: {
         type: Number,
@@ -59,7 +60,8 @@ var dishSchema = new Schema({
     timestamps: true
 });
 
-
+// Models are responsible for creating and reading documents from the underlying MongoDB database
 var Dishes = mongoose.model('Dish', dishSchema);
 
+// available to our Node app
 module.exports = Dishes;
