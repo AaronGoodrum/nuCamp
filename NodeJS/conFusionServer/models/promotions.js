@@ -4,64 +4,34 @@ require('mongoose-currency').loadType(mongoose);
 var Currency = mongoose.Types.Currency;
 
 // Schema -  organization of data as a blueprint of how the database is constructed
-var commentSchema = new Schema({
-	rating: {
-		type: Number,
-		min: 1,
-		max: 5,
-		required: true
-	},
-	comment: {
-		type: String,
-		required: true
-	},
-	author: {
-		type: String,
-		required: true
-	}
-}, {
-	timestamps: true
-});
-
-var dishSchema = new Schema({
+var promoSchema = new Schema({
 	name: {
 		type: String,
 		required: true,
 		unique: true
 	},
-	description: {
-		type: String,
-		required: true
-	},
 	image: {
-		type: String,
-		required: true
-	},
-	category: {
 		type: String,
 		required: true
 	},
 	label: {
 		type: String,
-		default: ''
+		default: ""
 	},
 	price: {
 		type: Currency,
-		required: true,
-		min: 0
+		required: true
 	},
-	featured: {
-		type: Boolean,
-		default: false
+	description: {
+		type: String,
+		required: true
 	},
-	comments: [commentSchema]
 }, {
-	usePushEach: true,
 	timestamps: true
 });
 
 // Models are responsible for creating and reading documents from the underlying MongoDB database
-var Dishes = mongoose.model('Dish', dishSchema);
+var Promos = mongoose.model('Promo', promoSchema);
 
 // available to our Node app
-module.exports = Dishes;
+module.exports = Promos;
