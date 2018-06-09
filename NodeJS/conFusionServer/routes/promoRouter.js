@@ -7,6 +7,7 @@ var promoRouter = express.Router();
 
 promoRouter.use(bodyParser.json());
 
+// Building routes for mongoDB data
 promoRouter.route('/')
 	.get((req, res, next) => {
 		Promos.find({})

@@ -50,7 +50,7 @@ app.use(function(err, req, res, next) {
 // Connection URL
 const url = 'mongodb://localhost/local';
 const connect = mongoose.connect(url, {
-  useMongoClient: true,
+  // useMongoClient: true,
   /* other options */
 });
 

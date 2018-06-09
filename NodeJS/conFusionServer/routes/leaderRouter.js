@@ -7,6 +7,7 @@ var leaderRouter = express.Router();
 
 leaderRouter.use(bodyParser.json());
 
+// Building routes for mongoDB data
 leaderRouter.route('/')
 	.get((req, res, next) => {
 		Leaders.find({})
@@ -20,7 +21,7 @@ leaderRouter.route('/')
 	.post((req, res, next) => {
 		Leaders.create(req.body)
 			.then((leader) => {
-				console.log('Dish Created ', leader);
+				console.log('Leader Created ', leader);
 				res.statusCode = 200;
 				res.setHeader('Content-Type', 'application/json');
 				res.json(leader);

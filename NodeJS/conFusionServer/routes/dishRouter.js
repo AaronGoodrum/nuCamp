@@ -9,6 +9,7 @@ const dishRouter = express.Router();
 
 dishRouter.use(bodyParser.json());
 
+// Building routes for mongoDB data
 dishRouter.route('/')
 	.get((req, res, next) => {
 		Dishes.find({})
