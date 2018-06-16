@@ -1,11 +1,20 @@
+//week3 created this file
+
 var express = require('express');
-var router = express.Router();
+
+//week3
 const bodyParser = require('body-parser');
 var User = require('../models/user');
 
+
+var router = express.Router();
 router.use(bodyParser.json());
 
 /* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
+
 router.post('/signup', (req, res, next) => {
   User.findOne({username: req.body.username})
   .then((user) => {
@@ -84,5 +93,4 @@ router.get('/logout', (req, res) => {
     next(err);
   }
 });
-
 module.exports = router;
