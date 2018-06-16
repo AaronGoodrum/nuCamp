@@ -1,38 +1,35 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-    
 
-var leadersSchema = new Schema({
-    name: {
+const leaderSchema = new Schema({
+    name : {
         type: String,
         required: true,
-        unique: true
     },
-    image: {
-        type: String,
+    image : {
+        type:String,
         required: true
     },
     designation: {
         type: String,
-        required: true,
-        unique: true
+        default:''
     },
-    abbr: {
+    abbr:{
         type: String,
-        
+        required: true
     },
-    description: {
+    description:{
         type: String,
         required: true,
     },
-    featured: {
-        type: Boolean,
-        default:false      
-    },
-   
+    featured:{
+        type : String,
+        default: false
+    }
+},{
+    timestamps: true
 });
 
-
-var Leaders = mongoose.model('Leader', leadersSchema);
+const Leaders = mongoose.model('Leader',leaderSchema);
 
 module.exports = Leaders;

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
 require('mongoose-currency').loadType(mongoose);
 var Currency = mongoose.Types.Currency;
 
@@ -15,7 +14,7 @@ var commentSchema = new Schema({
         type: String,
         required: true
     },
-    author: {
+    author:  {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
@@ -61,7 +60,6 @@ var dishSchema = new Schema({
     usePushEach: true,
     timestamps: true
 });
-
 
 var Dishes = mongoose.model('Dish', dishSchema);
 

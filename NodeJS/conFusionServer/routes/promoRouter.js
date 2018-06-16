@@ -1,75 +1,75 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const promoRouter = express.Router();
-  
-//week2
-const mongoose = require('mongoose');
+const cors = require('./cors');
+const Promotions = require('../models/promotions');
 
-const Promos = require('../models/promotion');
+const promoRouter = express.Router();
 
 promoRouter.use(bodyParser.json());
 
 promoRouter.route('/')
-.get((req,res,next) => {
-    Promos.find({})
-    .then((promos) => {
+.options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+.get((req,res,next)=>{
+    Promotions.find({}).
+    then((promotions)=>{
         res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(promos);
-    }, (err) => next(err))
+        res.setHeader('Content-Type','application/json');
+        res.json(promotions);
+    },(err)=>next(err))
     .catch((err) => next(err));
 })
-.post((req, res, next) => {
-    Promos.create(req.body)
-    .then((promo) => {
-        console.log('Promo Created ', promo);
+.post(cors.corsWithOptions,(req,res,next)=>{
+    Promotions.create(req.body)
+    .then((promotion)=>{
+        console.log('Promotion Created', promotion);
         res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(promo);
-    }, (err) => next(err))
-    .catch((err) => next(err));
+        res.setHeader('Content-Type','application/json');
+        res.json(promotion);
+    },(err)=>next(err))
+    .catch((err)=>next(err));
 })
-.put((req, res, next) => {
-    res.statusCode = 403;
-    res.end('PUT operation not supported on /promos');
+.put(cors.corsWithOptions,(req,res,next)=>{
+    res.statusCode=403;
+    res.end('Put operation not supported on /promotions');
 })
-.delete((req, res, next) => {
-    Promos.remove({})
-    .then((resp) => {
+.delete(cors.corsWithOptions,(req,res,next)=>{
+    Promotions.remove({})
+    .then((resp)=>{
         res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
+        res.setHeader('Content-Type','application/json');
         res.json(resp);
-    }, (err) => next(err))
-    .catch((err) => next(err));    
+    },(err)=>next(err))
+    .catch((err)=>next(err));
 });
 
 promoRouter.route('/:promoId')
-.get((req,res,next) => {
-    Promos.findById(req.params.promoId)
-    .then((promo) => {
+.options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+.get((req,res,next)=>{
+    Promotions.findById(req.params.promoId)
+    .then((promotion) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
-        res.json(promo);
+        res.json(promotion);
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.post((req, res, next) => {
+.post(cors.corsWithOptions,(req,res,next)=>{
     res.statusCode = 403;
-    res.end('POST operation not supported on /promos/'+ req.params.promoId);
+    res.end('Post operation not supported on /promotions/'+req.params.promoId);
 })
-.put((req, res, next) => {
-    Promos.findByIdAndUpdate(req.params.promoId, {
-        $set: req.body
-    }, { new: true })
-    .then((promo) => {
+.put(cors.corsWithOptions,(req,res,next)=>{
+    Promotions.findByIdAndUpdate(req.params.promoId,{
+        $set:req.body
+    },{new: true})
+    .then((promotion) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
-        res.json(promo);
+        res.json(promotion);
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.delete((req, res, next) => {
-    Promos.findByIdAndRemove(req.params.promoId)
+.delete(cors.corsWithOptions,(req,res,next)=>{
+    Promotions.findByIdAndRemove(req.params.promoId)
     .then((resp) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
