@@ -9,6 +9,7 @@ var config = require('./config');
 
 //Auth
 var passport = require('passport');
+var authenticate = require('./authenticate');
 
 // Data path
 var dishRouter = require('./routes/dishRouter');
@@ -34,6 +35,7 @@ app.all('*', (req, res, next) => {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -66,12 +68,14 @@ function auth (req, res, next) {
 }
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+
 
 //
 //Auth required for the next routes
 app.use(auth);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 app.use('/dishes',dishRouter);
 app.use('/promotions',promoRouter);
 app.use('/leaders',leaderRouter);
@@ -104,7 +108,7 @@ const connect = mongoose.connect(url, {
     useMongoClient: true,
     /* other options */
   });
-
+  const db = mongoose.connection;
 connect.then((db) => {
     console.log("Connected correctly to server");
 }, (err) => { console.log(err); });

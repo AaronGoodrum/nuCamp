@@ -1,14 +1,19 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const favoriteRouter = express.Router();
+const cors = require('./cors');
 const Favorites = require('../models/favorites');
 const authenticate = require('../authenticate');
 favoriteRouter.use(bodyParser.json());
 
 favoriteRouter.route('/')
-  .get(authenticate.verifyOrdinaryUser, (req, res, next) => {
+  .all(authenticate.verifyOrdinaryUser)
+  .options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200);
+  })
+  .get(cors.cors, authenticate.verifyOrdinaryUser, (req, res, next) => {
     Favorites.find({
-        "postedBy": req.decoded._doc._id
+        "Userposted": req.decoded._doc._id
       })
       .populate('postedBy')
       .populate('dishes')
@@ -18,9 +23,9 @@ favoriteRouter.route('/')
       });
   })
 
-  .post(authenticate.verifyOrdinaryUser, (req, res, next) => {
+  .post(cors.corsWithOptions, authenticate.verifyOrdinaryUser, (req, res, next) => {
     Favorites.find({
-      "postedBy": req.decoded._doc._id
+      "Userposted": req.decoded._doc._id
     }).exec((err, favorite) => {
       if (err) throw err;
       if (favorite.length === 0) {
@@ -42,9 +47,9 @@ favoriteRouter.route('/')
     });
   })
 
-  .delete(authenticate.verifyOrdinaryUser, (req, res, next) => {
+  .delete(cors.corsWithOptions, authenticate.verifyOrdinaryUser, (req, res, next) => {
     Favorites.find({
-      "postedBy": req.decoded._doc._id
+      "Userposted": req.decoded._doc._id
     }).exec((err, favorite) => {
       if (err) throw err;
       if (favorite.length === 0) {
@@ -64,9 +69,13 @@ favoriteRouter.route('/')
   });
 
 favoriteRouter.route('/:dishId')
-  .delete(authenticate.verifyOrdinaryUser, (req, res, next) => {
-    Favorites.find({
-      "postedBy": req.decoded._doc._id
+  .all(authenticate.verifyOrdinaryUser)
+  .options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200);
+  })
+  .delete(cors.corsWithOptions, authenticate.verifyOrdinaryUser, (req, res, next) => {
+    Favorites.findOne({
+      "Userposted": req.decoded._doc._id
     }).exec((err, favorite) => {
       if (err) throw err;
       var index = favorite[0].dishes.indexOf(req.params.dishId);
@@ -74,6 +83,7 @@ favoriteRouter.route('/:dishId')
         favorite[0].dishes.splice(index, 1);
         favorite[0].save((err, favorite) => {
           if (err) throw err;
+          console.log('Updated the Favorite!');
           res.json(favorite);
         });
       } else {
@@ -83,5 +93,7 @@ favoriteRouter.route('/:dishId')
         res.end("No such Dish");
       }
     });
-  });
+  })
+
+;
 module.exports = favoriteRouter;
