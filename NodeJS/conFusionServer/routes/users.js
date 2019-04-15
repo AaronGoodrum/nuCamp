@@ -82,7 +82,7 @@ router.get('/logout', cors.corsWithOptions, (req, res) => {
     res.clearCookie('session-id');
     res.redirect('/');
   } else {
-    var err = new Error('You are not logged in!');
+    let err = new Error('You are not logged in!');
     err.status = 403;
     next(err);
   }
